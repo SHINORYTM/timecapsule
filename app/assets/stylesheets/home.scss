@@ -13,10 +13,13 @@ ul{
  list-style:none;
 }
 
-body{
-    background-image: url(”/301737369a8e3c25d23c128f0a2cf267_l.jpg”); 
-    
-    min-height:calc(100vh - 135px);
+.wrapper{
+    background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
+    background-size:cover;
+    background-position:center center;
+    background-attachment: fixed;
+    min-height:95vh;
+    padding-bottom:30px
     
 }
 
@@ -69,6 +72,11 @@ h7{
 
 .footer{
     border-top:1px solid gray;
+}
+
+.footer_about{
+    border-top:1px solid gray;
+    margin-top:70px;
 }
 
 .about{
