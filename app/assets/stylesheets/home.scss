@@ -25,7 +25,6 @@ ul{
    
   /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
   background-attachment: fixed;
-  padding-bottom:30px
     
 }
 
@@ -50,12 +49,6 @@ ul{
 
 .gide{
     padding:15px;
-}
-
-.top-wrapper{
-    padding:100px 0;
-    max-width:60%;
-    
 }
 
 .content{
@@ -95,15 +88,11 @@ h7{
     margin-top:20px;
 }
 
-.btn{
+.btn-about{
     width:250px;
     display:block;
     margin:20px auto;
     
-}
-
-.btn-block{
-    display:block;
 }
 
 
