@@ -1,3 +1,72 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/** CSS：Area */
+@import "bootstrap";
+
+.title{
+    font-family:Comic Sans Ms;
+    text-shadow:0 2px 2px lightgray;
+}
+
+ul{
+ list-style:none;
+}
+
+body{
+    background-image: url(”/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg”); 
+    
+    min-height:calc(100vh - 135px);
+    
+}
+
+.head{
+    max-width:100%;
+    font-weight:bold;
+    
+    
+}
+
+
+.action{
+    border-bottom:1px solid;
+    margin:0 60px;
+}
+
+.gideline{
+    font-size:80%;
+    display:inline-block;
+    padding-right:20px;
+}
+
+.gide{
+    padding:15px;
+}
+
+.top-wrapper{
+    padding:100px 0;
+    max-width:60%;
+    
+}
+
+.content{
+    margin:0 120px
+    
+}
+
+
+
+
+.navbar{
+    max-width:calc(80% - 200px);
+    margin:0 auto;
+    box-shadow:0 2px 6px gray;
+}
+
+h7{
+    margin:0 auto;
+}
+
+.footer{
+    border-top:1px solid gray;
+}
