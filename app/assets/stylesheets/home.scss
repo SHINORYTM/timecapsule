@@ -70,3 +70,42 @@ h7{
 .footer{
     border-top:1px solid gray;
 }
+
+.about{
+    margin:0 auto;
+    text-align:center;
+    margin-top:30px;
+}
+
+.explain{
+    margin-top:20px;
+}
+
+.btn{
+    width:250px;
+    display:block;
+    margin:20px auto;
+    
+}
+
+
+
+
+.carousel-item{
+    text-align:center; 
+    background-color:lightgray;
+    background-size:cover;
+    background-position:center center;
+    
+}
+
+.slideshow{
+    min-height:427px;
+    max-width:640px;
+    max-height:427px;
+}
+
+.example{
+    font-weight:bold;
+    
+}
