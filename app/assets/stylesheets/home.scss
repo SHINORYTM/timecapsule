@@ -14,12 +14,17 @@ ul{
 }
 
 .wrapper{
+    min-height:95vh;
     background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
     background-size:cover;
-    background-position:center center;
-    background-attachment: fixed;
-    min-height:95vh;
-    padding-bottom:30px
+    /* 画像を常に天地左右の中央に配置 */
+  background-position: center center;
+   
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+   
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
     
 }
 
@@ -53,7 +58,7 @@ ul{
 }
 
 .content{
-    margin:0 120px
+    margin:0 auto;
     
 }
 
