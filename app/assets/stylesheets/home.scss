@@ -14,7 +14,7 @@ ul{
 }
 
 .wrapper{
-    min-height:90vh;
+    min-height:80vh;
     background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
     background-size:cover;
     /* 画像を常に天地左右の中央に配置 */
@@ -93,6 +93,10 @@ h7{
     display:block;
     margin:20px auto;
     
+}
+
+.block{
+    display:block;
 }
 
 
