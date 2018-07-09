@@ -1,3 +1,6 @@
+/** CSS：Area */
+@import "bootstrap";
+
 .title{
     font-family:Comic Sans Ms;
     text-shadow:0 2px 2px lightgray;
@@ -13,7 +16,7 @@ html,body{
 }
 
 .wrapper{
-    background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
+    background-image: url(../picture/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg);
     background-size:cover;
     background-position:center center;
     background-attachment: fixed;
