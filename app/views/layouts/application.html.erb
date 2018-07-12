@@ -10,6 +10,25 @@
   </head>
 
   <body>
-    <%= yield %>
+   <div class="wrapper">
+    <header class="head pb-2 pt-2 text-center bg-warning bg-light title"><h1><a href="/" class="text-warning">TIME CAPSULE</a></h1></header>
+
+     <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+     <% end %>
+
+     <%= yield %>
+   </div>
+
+    <footer class="footer bg-light mw-100">
+    <ul class=" gide text-right">
+      <li class="text-warning gideline">利用規約</li>
+      <li class="text-warning gideline">プライバシーポリシー</li>
+      <li class="text-warning gideline">特定商取引に関する表記</li>
+    </ul>
+    </footer>
+
   </body>
 </html>

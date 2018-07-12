@@ -17,7 +17,7 @@ ul{
     background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
     background-size:cover;
     background-position:center center;
-    background-attachment: fixed;
+    
     min-height:95vh;
     padding-bottom:30px
     
@@ -49,6 +49,11 @@ h7{
     width:400px;
 }
 
+.create_account input{
+    background-color:orange;
+    color:white;
+}
+
 
 
 input{
@@ -56,20 +61,3 @@ input{
     text-align:center;
 }
 
-
-
-
-
-.footer{
-    border-top:1px solid gray;
-}
-
-.gideline{
-    font-size:80%;
-    display:inline-block;
-    padding-right:20px;
-}
-
-.gide{
-    padding:15px;
-}

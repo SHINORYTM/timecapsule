@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   #users
   get "signup" =>"users#new"
+  post "users/create" =>"users#create"
   get "login" => "users#login_form"
   get 'users/index'
 end

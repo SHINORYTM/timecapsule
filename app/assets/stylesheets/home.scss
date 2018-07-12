@@ -13,26 +13,9 @@ ul{
  list-style:none;
 }
 
-.top-wrapper{
-    min-height:95vh;
-    background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
-    background-size:cover;
-    /* 画像を常に天地左右の中央に配置 */
-    background-position: center center;
-   
-  /* 画像をタイル状に繰り返し表示しない */
-    background-repeat: no-repeat;
-   
-  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
-    background-attachment: fixed;
-    
-}
-
 .head{
     max-width:100%;
-    font-weight:bold;
-    
-    
+    font-weight:bold;    
 }
 
 
@@ -41,23 +24,12 @@ ul{
     margin:0 60px;
 }
 
-.gideline{
-    font-size:80%;
-    display:inline-block;
-    padding-right:20px;
-}
 
-.gide{
-    padding:15px;
-}
 
 .content{
     margin:0 auto;
     
 }
-
-
-
 
 .navbar{
     max-width:calc(80% - 200px);
@@ -101,6 +73,7 @@ h7{
   /* 画像をタイル状に繰り返し表示しない */
     background-repeat: no-repeat;  
     position:relative;
+    margin-bottom:30px;
 }
 
 .coment{
@@ -120,11 +93,18 @@ h7{
     font-weight:bold;    
 }
 
+
 .footer{
     border-top:1px solid gray;
+    
 }
 
-.footer_about{
-    border-top:1px solid gray;
-    margin-top:30px;
+.gideline{
+    font-size:80%;
+    display:inline-block;
+    padding-right:20px;
+}
+
+.gide{
+    padding:15px;
 }
