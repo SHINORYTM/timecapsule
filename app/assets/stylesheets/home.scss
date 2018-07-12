@@ -18,13 +18,13 @@ ul{
     background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
     background-size:cover;
     /* 画像を常に天地左右の中央に配置 */
-  background-position: center center;
+    background-position: center center;
    
   /* 画像をタイル状に繰り返し表示しない */
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
    
   /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
-  background-attachment: fixed;
+    background-attachment: fixed;
     
 }
 
@@ -69,14 +69,7 @@ h7{
     margin:0 auto;
 }
 
-.footer{
-    border-top:1px solid gray;
-}
 
-.footer_about{
-    border-top:1px solid gray;
-    margin-top:70px;
-}
 
 .about{
     margin:0 auto;
@@ -88,31 +81,50 @@ h7{
     margin-top:20px;
 }
 
+
 .btn-about{
     width:250px;
     display:block;
-    margin:10px auto;
-    
+    margin:10px auto;    
 }
 
-
-
-
-.carousel-item{
-    text-align:center; 
-    background-color:lightgray;
+.img{
+    box-shadow:0 2px 6px lightgray;
+    margin:0 auto;
+    background-image:url("/301737369a8e3c25d23c128f0a2cf267_l.jpg");
+    max-width:calc(100% - 300px);
+    padding:450px 0 30px 0;
     background-size:cover;
-    background-position:center center;
-    
+    /* 画像を常に天地左右の中央に配置 */
+    background-position: center center;
+   
+  /* 画像をタイル状に繰り返し表示しない */
+    background-repeat: no-repeat;  
+    position:relative;
 }
 
-.slideshow{
-    min-height:427px;
-    max-width:640px;
-    max-height:427px;
+.coment{
+    font-weight:bold;
+    transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);  
+    vertical-align:top;
+    display:inline-block;
+    vertical-align:top;
+    position:absolute;
+    left:30px;
+    top:60px;
 }
 
 .example{
-    font-weight:bold;
-    
+    font-weight:bold;    
+}
+
+.footer{
+    border-top:1px solid gray;
+}
+
+.footer_about{
+    border-top:1px solid gray;
+    margin-top:30px;
 }
