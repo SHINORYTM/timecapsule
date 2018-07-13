@@ -125,3 +125,25 @@ h7{
 .gide{
     padding:15px;
 }
+
+/* how_to_use */
+.use_wrapper{
+    
+    background-image: url("/58389c679501bd91619c029ba29b721d_m.jpg");
+    background-size:cover;
+    background-position:center center;
+    min-height:95vh;
+    
+}
+
+.use{
+    max-width:50%;
+    background-color: white;
+    margin:0 auto;
+    text-align:center;
+    padding:10px 10px 0 10px;
+}
+
+.use .explain{
+    color:orange
+}

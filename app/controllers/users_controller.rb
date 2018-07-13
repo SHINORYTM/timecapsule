@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+
   def index
   end
 
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
       email: params[:email], 
       password: params[:password]
       )
-    if @user.save
+    if @user
       session[:user_id] = @user.id
       flash[:notice] = "アカウント登録が完了しました"
       redirect_to("/users/#{@user.id}")
@@ -40,6 +42,12 @@ class UsersController < ApplicationController
       @password = params[:password]
       render("users/login_form")
     end
+  end
+
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = "ログアウトしました"
+    redirect_to("/login")
   end
   
 end

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  #home top
+  #home
   get '/' => "home#top"
   get "about" => "home#about"
+  get "how_to_use" => "home#how_to_use"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   #users
@@ -12,4 +13,8 @@ Rails.application.routes.draw do
   get 'users/index'
   get "users/:id" => "users#show"
   post "login" => "users#login"
+  post "logout" => "users#logout"
+
+  #create
+
 end
