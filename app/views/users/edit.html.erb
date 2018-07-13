@@ -1,4 +1,3 @@
-
 <div class="login_wrapper">
     <header class="head pb-2 pt-2 bg-warning bg-light title">
       <h3 class="text-white bg-warning px-2 ml-2">T C</h3>
@@ -17,11 +16,11 @@
         </button>
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/users/#{@user.id}">マイページ</a>
+          <a class="dropdown-item" href="#">マイページ</a>
           <a class="dropdown-item" href="#">編集する</a>
           <a class="dropdown-item" href="#">使い方</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/users/#{@user.id}/edit">アカウント設定</a>
+          <a class="dropdown-item" href="#">アカウント設定</a>
           <a class="dropdown-item" href="#">ログアウト</a>
         </div><!-- /.dropdown-menu -->
       </div>
@@ -37,8 +36,23 @@
       <div class="clear"></div>
     </header>
 
-    <div class="album">
-      
+    <div class="edit">
+    <div class="container middle-wrapper bg-light  border-bottom text-center py-3">
+    <div class="login_form">
+        <h4 class="title text-warning">edit account</h4>
+        <% @user.errors.full_messages.each do |message| %>
+          <div class="form-error title">
+            <%= message %>
+          </div>
+        <% end %>
+        <%= form_tag("/users/create") do %>
+         <div class="input mt-3 mb-3"><input name="name" value="<%= @user.name %>"  placeholder="名前"></div>
+         <div class="input mt-3 mb-3"><input name="email" value="<%= @user.email %>" placeholder="メールアドレス"></div>
+         <div class="input mb-3"><input name="password" value="<%= @user.password %>" type="password" placeholder="パスワード"></div>
+         <div class="input create_account mb-3"><input type="submit" value="アカウント編集"></div>
+        <% end %>
+    </div>
+  </div>
 
     </div>
 
