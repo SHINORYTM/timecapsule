@@ -25,6 +25,12 @@
         </div><!-- /.dropdown-menu -->
       </div>
 
+      <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+     <% end %>
+
   
 
       <div class="clear"></div>

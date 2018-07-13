@@ -14,15 +14,15 @@
 <div class="container middle-wrapper bg-light  border-bottom text-center py-3">
   <div class="login_form">
    <%= form_tag("/login") do %>
-      <h6 class="title text-warning">TIME CAPSULEにログイン</h6>
+      <h6 class="title">TIME CAPSULEにログイン</h6>
       <% if @error_message %>
        <div class="form-error">
         <%= @error_message %>
        </div>
       <% end %>
-      <div class="input mt-3 mb-3"><input placeholder="メールアドレス"></div>
-      <div class="input mb-3"><input type="password" placeholder="パスワード"></div>
-      <div class="input login_account mb-3"><input type="submit" value="ログイン"></div>
+      <div class="input mt-3 mb-3"><input name="email" value="<%= @email %>" placeholder="メールアドレス"></div>
+      <div class="input mb-3"><input name="password" value="<%= @password %>" type="password" placeholder="パスワード"></div>
+      <div class="input login_account mb-1"><input type="submit" value="ログイン"></div>
 　 <% end %>
       <div class="mb-3">-または-</div>
       <button type="hidden" class="btn btn-top btn-warning mb-4"><a href="/signup" class="text-white">新しいアカウントを作成</a></button>
