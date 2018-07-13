@@ -1,3 +1,11 @@
+<div class="wrapper">
+    <header class="head pb-2 pt-2 text-center bg-warning bg-light title"><h1><a href="/" class="text-warning">TIME CAPSULE</a></h1></header>
+
+     <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+     <% end %>
 
 <nav class="navbar navbar-expand-md navbar-white bg-warning my-4 py-3">
     <h7 ><a href="/about" class="about title text-white">WHAT IS TIME CAPSULE</a></h7>
@@ -5,12 +13,21 @@
 
 <div class="container middle-wrapper bg-light  border-bottom text-center py-3">
   <div class="login_form">
+   <%= form_tag("/login") do %>
       <h6 class="title text-warning">TIME CAPSULEにログイン</h6>
+      <% if @error_message %>
+       <div class="form-error">
+        <%= @error_message %>
+       </div>
+      <% end %>
       <div class="input mt-3 mb-3"><input placeholder="メールアドレス"></div>
       <div class="input mb-3"><input type="password" placeholder="パスワード"></div>
-      <button type="hidden" class="btn btn-top btn-primary mb-3">ログイン</button>
+      <div class="input login_account mb-3"><input type="submit" value="ログイン"></div>
+　 <% end %>
       <div class="mb-3">-または-</div>
       <button type="hidden" class="btn btn-top btn-warning mb-4"><a href="/signup" class="text-white">新しいアカウントを作成</a></button>
   </div>
+</div>
+
 </div>
 

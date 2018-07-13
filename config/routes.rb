@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   post "users/create" =>"users#create"
   get "login" => "users#login_form"
   get 'users/index'
+  get "users/:id" => "users#show"
+  post "login" => "users#login"
 end

@@ -1,5 +1,12 @@
  
-    
+  <div class="wrapper">
+  <header class="head pb-2 pt-2 text-center bg-warning bg-light title"><h1><a href="/" class="text-warning">TIME CAPSULE</a></h1></header>
+
+   <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+   <% end %>  
 
 
   <div class="pt-4">
@@ -23,6 +30,7 @@
     </div>
   </div>
 
+  </div>
     
   
 
