@@ -6,7 +6,7 @@
          How to Use
         </li>
         <li class="title text-warning menu">
-         To Edit
+         To Create
         </li>
       </ul>
       <div class="dropdown">
@@ -16,22 +16,18 @@
         </button>
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">マイページ</a>
-          <a class="dropdown-item" href="#">編集する</a>
-          <a class="dropdown-item" href="#">使い方</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">アカウント設定</a>
-          <a class="dropdown-item" href="#">ログアウト</a>
-        </div><!-- /.dropdown-menu -->
+        <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
+        <a class="dropdown-item" href="#">使い方</a>
+        <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
+        <%=link_to "ログアウト",{:controllor => "users", :aciton=> "logout", :method => "post"},{ :class => "dropdown-item"} %>
+        </div>
       </div>
 
       <% if flash[:notice] %>
-      <div class="flash">
+      <div class="flash my-1">
         <%= flash[:notice] %>
       </div>
      <% end %>
-
-  
 
       <div class="clear"></div>
     </header>
@@ -45,11 +41,11 @@
             <%= message %>
           </div>
         <% end %>
-        <%= form_tag("/users/create") do %>
+        <%= form_tag("/users/#{@user.id}/update") do %>
          <div class="input mt-3 mb-3"><input name="name" value="<%= @user.name %>"  placeholder="名前"></div>
          <div class="input mt-3 mb-3"><input name="email" value="<%= @user.email %>" placeholder="メールアドレス"></div>
          <div class="input mb-3"><input name="password" value="<%= @user.password %>" type="password" placeholder="パスワード"></div>
-         <div class="input create_account mb-3"><input type="submit" value="アカウント編集"></div>
+         <div class="input create_account mb-3"><input type="submit" value="保存"></div>
         <% end %>
     </div>
   </div>
