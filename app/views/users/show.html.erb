@@ -18,7 +18,7 @@
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
-          <a class="dropdown-item" href="#">使い方</a>
+          <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
           <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
           <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
         </div><!-- /.dropdown-menu -->
