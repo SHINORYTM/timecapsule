@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "users/:id/edit" => "users#edit"
   post "users/:id/update" => "users#update"
   post "users/:id/destroy" => "users#destroy"
+  get "users/:id/how_to_use" => "users#how_to_use"
 
   #create
 

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user, {only: [:show, :edit, :update]}
+  before_action :authenticate_user, {only: [:show, :edit, :update, :how_to_use]}
   before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
-  before_action :ensure_correct_user, {only: [:edit, :update, :show]}
+  before_action :ensure_correct_user, {only: [:edit, :update, :show, :how_to_use]}
 
   def index
   end
@@ -83,6 +83,10 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:notice] = "アカウントを削除しました"
     redirect_to("/")
+  end
+
+  def how_to_use
+    @user = User.find_by(id: params[:id])
   end
 
 end
