@@ -1,4 +1,4 @@
-<div class="use_wrapper">
+<div class="login_wrapper">
     <header class="head pb-2 pt-2 bg-warning bg-light title">
       <h3 class="text-white bg-warning px-2 ml-2">T C</h3>
       <ul　class="login_menu">
@@ -32,14 +32,23 @@
       <div class="clear"></div>
     </header>
 
- <div class="use mt-4 pb-3">
-  <h3 class="title text-warning">SAMPLE(TIME CAPSULEの使い方)</h3>
-  <h4 class="title explain">使い方はとてもシンプル</h4>
-  <P>①使用する写真を選択し、アップロード<br>
-  ②好きなページに写真をレイアウト<br>
-  ③メッセージを添付<br>
-  ④送信する相手、送信する年月日を指定</p>
-  <h4 class="title explain">大切な人と思い出を共有しよう</h4>
- </div>
+    <div class="make_album">
+     <div class="container middle-wrapper bg-light  border-bottom text-center py-3">
+      <div class="login_form">
+        <h4 class="title text-warning">Create a Timecapsule</h4>
+         <% if @error_message %>
+         <div class="form-error mt-3">
+         <%= @error_message %>
+         </div>
+         <% end %>
+        <%= form_tag("/picture/#{@user.id}/create", {multipart: true}) do %>
+         <div class="input mt-3 mb-3"><input name="title" value="<%= @picture.title %>"  placeholder="アルバム名"></div>
+         <div class="textarea mt-3 mb-3"><textarea name="coment" cols="45" rows="6" value="<%= @picture.coment %>" placeholder="メッセージ"></textarea></div>
+         <div class="input input_image mt-3 mb-3"><input name="image" type="file"></div>
+         <div class="title input create_album mb-3"><input type="submit" value="Timecapsuleを保存"></div>
+        <% end %>
+      </div>
+     </div>
+    </div>
 
 </div>

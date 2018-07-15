@@ -7,7 +7,7 @@
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
         </li>
         <li class="title text-warning menu">
-        To Create
+        <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
         </li>
       </ul>
       <div class="dropdown">
@@ -33,8 +33,19 @@
       <div class="clear"></div>
     </header>
 
-    <div class="album">
-      
+    <div class="album mt-5">
+    <% if @pictures %>
+     <% @pictures.each do |picture| %>
+        <div class="image_list">
+          <img src="<%= "/images/#{picture.image_name}" %>">
+          <h4 class="image_title text-secondary title"><%= "#{picture.title}" %></h4>
+          <button type="hidden" class="btn image_button btn-warning mb-4"><a href="#" class="text-white title">Timecapsuleを編集する</a></button><br>
+          <button type="hidden" class="btn image_button btn-primary mb-4"><a href="＃" class="text-white title">Timecapsuleを確認</a></button>
+        </div>
+     <% end %>
+     <% else %>
+      <h1 class="no_image title text-warning">Nothing Timecapsule</h1>
+    <% end %>
 
     </div>
 

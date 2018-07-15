@@ -1,0 +1,17 @@
+// Place all the styles related to the picture controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.create_album input{
+    background-color:orange;
+    color:white;
+    border-radius:5px;
+    padding:5px 0;
+}
+
+.create_album input:hover{
+    opacity:0.7;
+}
+
+.image_button{
+    width:250px;
+}

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'picture/create'
   #home
   get '/' => "home#top"
   get "about" => "home#about"
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
   get "signup" =>"users#new"
   post "users/create" =>"users#create"
   get "login" => "users#login_form"
-  get 'users/index'
   get "users/:id" => "users#show"
   post "login" => "users#login"
   post "logout" => "users#logout"
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   post "users/:id/destroy" => "users#destroy"
   get "users/:id/how_to_use" => "users#how_to_use"
 
-  #create
+  #picture
+  post "picture/:id/create" => "picture#create"
+  get "picture/:id/make" => "picture#make"
 
 end
