@@ -44,15 +44,15 @@
         <img class="card-img-top" src="<%= "/images/#{picture.image_name}" %>">
          <div class="card-body px-2 py-3">
           <h4 class="card-title text-center image_title text-secondary title"><%= "NAME：#{picture.title}" %></h4>
-          <button type="hidden" class="btn image_button btn-warning mb-2"><a href="#" class="text-white title">Timecapsuleを編集する</a></button><br>
-          <button type="hidden" class="btn image_button btn-primary mb-4"><a href="＃" class="text-white title">Timecapsuleを削除</a></button>
+          <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2") %>
+          <%= link_to("Timecapsuleを削除", "/picture/#{picture.id}/destroy", {method: "post", :class => "image_destroy",data: { :confirm => '削除します。よろしいですか?'} }) %>
          </div>
        </div>    
        </div>
       <% end %> 
       </div> 
     <% else %>
-   <h1 class="no_image title text-warning">Nothing Timecapsule</h1>
+   <h1 class="title text-warning">Nothing Timecapsule</h1>
     <% end %>
   </div>
 

@@ -1,0 +1,50 @@
+<div class="login_wrapper">
+    <header class="head pb-2 pt-2 bg-warning bg-light title">
+      <h3 class="text-white bg-warning px-2 ml-2">T C</h3>
+      <ul　class="login_menu">
+        <li class="title text-warning menu">
+         <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
+        </li>
+        <li class="title text-warning menu">
+        <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <!-- 切替ボタンの設定 -->
+        <button type="button" class="btn btn-warning text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= @user.name %>
+        </button>
+        <!-- ドロップメニューの設定 -->
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
+        <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
+        <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
+        <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+    </header>
+
+    <div class="edit">
+    <div class="container middle-wrapper bg-light  border-bottom text-center py-3">
+    <div class="login_form">
+        <h4 class="title text-warning mb-3">edit Timecapsule</h4>
+        <% if @error_message %>
+         <div class="form-error mt-3">
+         <%= @error_message %>
+         </div>
+         <% end %>
+        <%= form_tag("/picture/#{@picture.id}/update") do %>
+         <img class="card-img-top" src="<%= "/images/#{@picture.image_name}" %>">
+         <div class="input mt-3 mb-3"><input name="title" value="<%= @picture.title %>" placeholder="title"></div>
+         <div class="textarea mt-3 mb-3"><textarea name="coment" cols="45" rows="6" value="<%= @picture.coment %>" placeholder="メッセージ"></textarea></div>
+         <div class="input create_account mb-3"><input type="submit" value="編集"></div>
+        <% end %>
+    </div>
+    </div>
+    </div>
+
+    
+
+</div>
