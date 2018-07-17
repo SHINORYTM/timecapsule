@@ -1,8 +1,8 @@
 class PictureController < ApplicationController
 
-  before_action :authenticate_user, {only: [:create,:make,:edit]}
-  before_action :ensure_correct_user, {only: [:create,:make,]}
-  before_action :ensure_correct_user_id, {only: [:edit]}
+  before_action :authenticate_user, {only: [:create,:make,:image_edit,:image_show]}
+  before_action :ensure_correct_user, {only: [:create,:make,:image_show]}
+  before_action :ensure_correct_user_id, {only: [:image_edit,:image_show]}
   
   def make
     @user = User.find_by(id: params[:id])
@@ -30,6 +30,11 @@ class PictureController < ApplicationController
       @error_message = "タイトル名または写真が未挿入です"
       render("picture/make")
     end
+  end
+
+  def image_show
+    @picture=Picture.find_by(id: params[:id])
+    @user=@current_user
   end
 
   def image_edit

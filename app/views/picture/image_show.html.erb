@@ -1,0 +1,10 @@
+<h4 class="image_show_top title text-center text-warning mt-3">Timecapsule 詳細</h4>
+<div class="image_show bg-light py-3 px-3">
+  <div><img class="img-fluid" src="<%= "/images/#{@picture.image_name}" %>"></div>
+  <div class="image_explain bg-warning p-2 mt-3">
+  <div class="my-2 title image_title text-white text-left"><%= "NAME：#{@picture.title}" %></div>
+  <div class="my-2 title image_coment text-white text-left"><%= "message：#{@picture.coment}" %></div>
+  </div>
+  <input type="button" class="btn btn-default bg-primary text-white mt-3" value="閉じる" onClick="window.close()">
+</div>
+

@@ -1,6 +1,6 @@
 <div class="use_wrapper">
     <header class="head pb-2 pt-2 bg-warning bg-light title">
-      <h3 class="text-white bg-warning px-2 ml-2">T C</h3>
+      <h3><%=link_to "T C","/users/#{@user.id}",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
       <ul　class="login_menu">
         <li class="title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>

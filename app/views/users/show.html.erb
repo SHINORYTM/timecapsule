@@ -1,7 +1,7 @@
 
 <div class="login_wrapper">
     <header class="head pb-2 pt-2 bg-warning bg-light title">
-      <h3 class="text-white bg-warning px-2 ml-2">T C</h3>
+      <h3><%=link_to "T C","/users/#{@user.id}",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3>     
       <ul　class="login_menu">
         <li class="title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
@@ -36,12 +36,15 @@
 
   
   <div class="container">
-    <% if @pictures %>
+    <% if @pictures  %>
+     <h4 class="title text-warning text-center mt-3">Timecapsule一覧</h4>
       <div class="row album">
       <% @pictures.each do |picture| %>
-       <div class="col-sm-6 col-md-3 py-3 mt-5 bg-light work">
-       <div class="card img-thumbnail">  
-        <img class="card-img-top" src="<%= "/images/#{picture.image_name}" %>">
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work center-block">
+       <div class="card img-thumbnail"> 
+        <%= link_to "/picture/#{picture.id}/image_show", target: "_blank" do %>
+         <%= image_tag("/images/#{picture.image_name}", :class => "card-img-top") %>
+        <% end %>       
          <div class="card-body px-2 py-3">
           <h4 class="card-title text-center image_title text-secondary title"><%= "NAME：#{picture.title}" %></h4>
           <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2") %>
@@ -52,7 +55,7 @@
       <% end %> 
       </div> 
     <% else %>
-   <h1 class="title text-warning">Nothing Timecapsule</h1>
+   <h4 class="title text-warning text-center mt-3">Nothing Timecapsule</h4>
     <% end %>
   </div>
 

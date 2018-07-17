@@ -1,6 +1,10 @@
 // Place all the styles related to the picture controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+    box-sizing: border-box;
+  }
+
 .create_album input{
     background-color:orange;
     color:white;
@@ -34,12 +38,48 @@
     border-radius:5px;
     padding:5px 0;
     text-align:center;
+    
 }
 
  .album{
      margin:0 auto;
  }
 
+ .card-body{
+     text-align:center;
+ }
+
+.row-eq-height{
+    background: rgba(255,255,255,0);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image_show_top{
+    max-height:700px;
+}
+
+.image_show {
+    margin:30px auto;
+    min-height:100vh;
+    text-align:center;
+    width:60%;
+}
+
+.image_title .image_coment{
+    text-align:left;
+   
+}
+
+.image_explain{
+    width:80%;
+    margin:0 auto;
+    border-radius:5px;
+}
+
+.btn-default{
+    width:190px;
+}
 
 
  
