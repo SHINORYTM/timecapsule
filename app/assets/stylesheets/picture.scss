@@ -50,9 +50,20 @@
  }
 
 .row-eq-height{
-    background: rgba(255,255,255,0);
+    background:orange;
     display: flex;
     flex-wrap: wrap;
+}
+
+.image_nil{
+    display:inline-block;
+    background-color:rgb(243, 183, 18);
+    color:white;
+    width:300px;
+    border-radius:5px;
+    padding:10px;
+    text-align:center;
+    
 }
 
 .image_show_top{
@@ -60,15 +71,14 @@
 }
 
 .image_show {
-    margin:30px auto;
-    min-height:100vh;
+    margin:30px auto;   
     text-align:center;
     width:60%;
 }
 
 .image_title .image_coment{
     text-align:left;
-   
+    font-weight:bold;
 }
 
 .image_explain{
@@ -81,5 +91,16 @@
     width:190px;
 }
 
+.btn-default:hover{
+    opacity:0.7;
+}
+
+.card-img-top:hover{
+    opacity:0.7;
+}
+
+.show_wrapper{
+    min-height:90vh;
+}
 
  

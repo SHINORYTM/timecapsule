@@ -36,17 +36,17 @@
 
   
   <div class="container">
-    <% if @pictures  %>
-     <h4 class="title text-warning text-center mt-3">Timecapsule一覧</h4>
+    <% if @pictures.present? %>
+     <h4 class="h3 title text-warning text-center mt-3">Timecapsule一覧</h4>
       <div class="row album">
       <% @pictures.each do |picture| %>
-       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work center-block">
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
        <div class="card img-thumbnail"> 
         <%= link_to "/picture/#{picture.id}/image_show", target: "_blank" do %>
          <%= image_tag("/images/#{picture.image_name}", :class => "card-img-top") %>
         <% end %>       
          <div class="card-body px-2 py-3">
-          <h4 class="card-title text-center image_title text-secondary title"><%= "NAME：#{picture.title}" %></h4>
+          <h4 class="card-title text-center image_title text-secondary title"><%= "title：#{picture.title}" %></h4>
           <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2") %>
           <%= link_to("Timecapsuleを削除", "/picture/#{picture.id}/destroy", {method: "post", :class => "image_destroy",data: { :confirm => '削除します。よろしいですか?'} }) %>
          </div>
@@ -55,7 +55,10 @@
       <% end %> 
       </div> 
     <% else %>
-   <h4 class="title text-warning text-center mt-3">Nothing Timecapsule</h4>
+   <div class="container mx-auto text-center">
+   <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+   <%= link_to("Timecapsule作成", "/picture/#{@user.id}/make", :class => "h5 image_nil mt-5 title text-white") %>
+   </div>
     <% end %>
   </div>
 

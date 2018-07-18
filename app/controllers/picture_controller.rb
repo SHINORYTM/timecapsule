@@ -1,7 +1,7 @@
 class PictureController < ApplicationController
 
   before_action :authenticate_user, {only: [:create,:make,:image_edit,:image_show]}
-  before_action :ensure_correct_user, {only: [:create,:make,:image_show]}
+  before_action :ensure_correct_user, {only: [:create,:make]}
   before_action :ensure_correct_user_id, {only: [:image_edit,:image_show]}
   
   def make
