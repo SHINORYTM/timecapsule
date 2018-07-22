@@ -47,8 +47,9 @@
         <% end %>       
          <div class="card-body px-2 py-3">
           <h4 class="card-title text-center image_title text-secondary title"><%= "title：#{picture.title}" %></h4>
-          <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2") %>
-          <%= link_to("Timecapsuleを削除", "/picture/#{picture.id}/destroy", {method: "post", :class => "image_destroy",data: { :confirm => '削除します。よろしいですか?'} }) %>
+          <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2 title") %>
+          <%= link_to("Timecapsuleを削除", "/picture/#{picture.id}/destroy", {method: "post", :class => "image_destroy title",data: { :confirm => '削除します。よろしいですか?'} }) %>
+          <%= link_to("Timecapsuleを送信", "/picture/#{picture.id}/make_email", {:class => "sent_email title",data: { :confirm => 'Timecapsuleを届けます。よろしいですか？'} }) %>
          </div>
        </div>    
        </div>

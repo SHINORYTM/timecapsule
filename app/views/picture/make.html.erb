@@ -42,6 +42,7 @@
          </div>
          <% end %>
         <%= form_tag("/picture/#{@user.id}/create", {multipart: true}) do %>
+         <div class="input mt-3 mb-3"><input name="sent_email" value="<%= @picture.sent_email %>" placeholder="メールアドレス<送信先＞"></div>
          <div class="input mt-3 mb-3"><input name="title" value="<%= @picture.title %>"  placeholder="アルバム名"></div>
          <div class="textarea mt-3 mb-3"><textarea name="coment" cols="45" rows="6" value="<%= @picture.coment %>" placeholder="メッセージ"></textarea></div>
          <div class="input input_image mt-3 mb-3"><input name="image" type="file"></div>

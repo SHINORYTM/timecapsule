@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_15_022739) do
+ActiveRecord::Schema.define(version: 2018_07_21_100951) do
 
   create_table "pictures", force: :cascade do |t|
     t.string "image_name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_07_15_022739) do
     t.text "coment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sent_email"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,5 +1,10 @@
 <div class="show_wrapper">
-<h4 class="h3 image_show_top title text-center text-warning mt-3">Timecapsule 詳細</h4>
+<% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+<% end %>
+<h4 class="h3 image_show_top title text-center text-warning mt-3">Timecapsule</h4>
 <div class="container image_show bg-light py-3 px-3">
   <div><img class="img-fluid" src="<%= "/images/#{@picture.image_name}" %>"></div>
   <div class="image_explain bg-warning p-2 mt-3">

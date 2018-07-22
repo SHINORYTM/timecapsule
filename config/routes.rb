@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   get "picture/:id/image_edit" => "picture#image_edit"
   post "picture/:id/update" => "picture#update"
   get "picture/:id/image_show" => "picture#image_show"
+  get "picture/:id/make_email" => "picture#make_email"
 
 end

@@ -1,12 +1,23 @@
 class PictureController < ApplicationController
 
-  before_action :authenticate_user, {only: [:create,:make,:image_edit,:image_show]}
+  before_action :authenticate_user, {only: [:create,:make,:image_edit]}
   before_action :ensure_correct_user, {only: [:create,:make]}
-  before_action :ensure_correct_user_id, {only: [:image_edit,:image_show]}
+  before_action :ensure_correct_user_id, {only: [:image_edit]}
   
   def make
     @user = User.find_by(id: params[:id])
     @picture =Picture.new
+  end
+
+  def make_email
+    @picture=Picture.find_by(id: params[:id])
+    @user=@current_user
+
+    if @picture.present?
+      MakeMailer.make_email(@user,@picture).deliver
+      redirect_to("/users/#{@user.id}")
+      flash[:notice] = "Timecapsuleを送信しました"
+    end 
   end
 
   def create
@@ -14,7 +25,8 @@ class PictureController < ApplicationController
     @picture=Picture.new(
        title: params[:title],
        coment: params[:coment],
-       user_id: @user.id
+       user_id: @user.id,
+       sent_email: params[:sent_email]
     )
     
     if params[:image]
@@ -27,7 +39,7 @@ class PictureController < ApplicationController
       flash[:notice] = "Timecapsuleを作成しました"
       redirect_to("/users/#{@user.id}")
     else
-      @error_message = "タイトル名または写真が未挿入です"
+      @error_message = "正しく記入してください"
       render("picture/make")
     end
   end
@@ -46,6 +58,7 @@ class PictureController < ApplicationController
     @picture = Picture.find_by(id: params[:id])
     @picture.title = params[:title]
     @picture.coment = params[:coment]
+    @picture.sent_email=params[:sent_email]
     @user=@current_user 
     if @picture.save
       flash[:notice] = "Timecapsuleを編集しました"
