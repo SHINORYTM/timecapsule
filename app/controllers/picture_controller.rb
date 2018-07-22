@@ -16,7 +16,7 @@ class PictureController < ApplicationController
     if @picture.present?
       MakeMailer.make_email(@user,@picture).deliver
       redirect_to("/users/#{@user.id}")
-      flash[:notice] = "Timecapsuleを送信しました"
+      flash[:notice] = "Timecapsuleで：#{@picture.title}を送信しました"
     end 
   end
 

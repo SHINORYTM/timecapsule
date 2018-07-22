@@ -6,8 +6,9 @@
   <body>
     <h2> <%= @user.name %>様からTimcapsuleが届いています。</h2>
     <p>
-      下記URLからご覧ください<br>
-      <%= @url %>
+      下記リンクよりご覧ください<br>
+      <%= link_to("Timecapsule for you", controller: :picture, id: @picture.id, action: :image_show) %>
+      
     </p>
   </body>
 </html>
