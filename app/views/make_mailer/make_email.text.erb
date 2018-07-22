@@ -2,5 +2,5 @@
 <%= @user.name %>様からTimecapsuleが届きました。
 ===============================
 
-下記URLからご覧ください。
-<%= @url %>
+下記リンクよりご覧ください<br>
+<%= link_to("Timecapsule for you", controller: :picture, id: @picture.id, action: :image_show) %>
