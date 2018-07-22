@@ -103,7 +103,7 @@ Rails.application.configure do
 	enable_starttls_auto:  true
 }
 
-config.action_controller.asset_host = 'http://test-timecapsule.herokuapp.com'
+config.action_mailer.asset_host = config.action_controller.asset_host
 config.action_mailer.default_url_options= { host:'test-timecapsule.herokuapp.com' }
 
 end
