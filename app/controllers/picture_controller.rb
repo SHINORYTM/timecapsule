@@ -3,6 +3,7 @@ class PictureController < ApplicationController
   before_action :authenticate_user, {only: [:create,:make,:image_edit]}
   before_action :ensure_correct_user, {only: [:create,:make]}
   before_action :ensure_correct_user_id, {only: [:image_edit]}
+  before_action :request_referer, {only: [:image_show]}
   
   def make
     @user = User.find_by(id: params[:id])
@@ -18,6 +19,16 @@ class PictureController < ApplicationController
       redirect_to("/users/#{@user.id}")
       flash[:notice] = "Timecapsule【title:#{@picture.title}】を送信しました"
     end 
+  end
+
+  def redirect
+    @picture = Picture.find_by(id: params[:id])
+    if params[:sent].present? 
+     render("/picture/image_show")
+    else
+     flash[:notice] = "権限がありません"
+     redirect_to("/")
+    end
   end
 
   def create
@@ -91,5 +102,15 @@ class PictureController < ApplicationController
       redirect_to("/users/#{@current_user.id}")
     end
   end
+
+  def request_referer
+      @picture = Picture.find_by(id: params[:id])
+      referer = request.env['HTTP_REFERER']
+      if referer.blank? || params[:sent].blank?
+        flash[:notice] = "権限がありません"
+        redirect_to("/")
+      end
+  end 
+  
 
 end

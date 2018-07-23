@@ -42,9 +42,8 @@
       <% @pictures.each do |picture| %>
        <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
        <div class="card img-thumbnail"> 
-        <%= link_to "/picture/#{picture.id}/image_show", target: "_blank" do %>
-         <%= image_tag("/images/#{picture.image_name}", :class => "card-img-top") %>
-        <% end %>       
+        <%= link_to image_tag("/images/#{picture.image_name}", {:class => "card-img-top"}), {:controller => :picture, :id => picture.id, :action => :image_show, :sent => :email}, {:target => "_blank"} %>
+            
          <div class="card-body px-2 py-3">
           <h4 class="card-title text-center image_title text-secondary title"><%= "title：#{picture.title}" %></h4>
           <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2 title") %>
