@@ -45,7 +45,8 @@
          <div class="input mt-3 mb-3"><input name="sent_email" value="<%= @picture.sent_email %>" placeholder="メールアドレス<送信先＞"></div>
          <div class="input mt-3 mb-3"><input name="title" value="<%= @picture.title %>"  placeholder="アルバム名"></div>
          <div class="textarea mt-3 mb-3"><textarea name="coment" cols="45" rows="6" value="<%= @picture.coment %>" placeholder="メッセージ"></textarea></div>
-         <div class="input input_image mt-3 mb-3"><input name="image" type="file"></div>
+         <div class="input input_image mt-3 mb-2"><input name="image" type="file"></div>
+         <div class="h6 input_time mt-3 mb-3">送信予定日: <input type="datetime-local" name="send_time" step="60"></div>
          <div class="title input create_album mb-3"><input type="submit" value="Timecapsuleを保存"></div>
         <% end %>
       </div>

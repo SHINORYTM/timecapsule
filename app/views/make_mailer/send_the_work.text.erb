@@ -1,0 +1,10 @@
+===============================
+<%= @user.name %>さんから
+Timcapsuleが届きました。
+===============================
+
+Timecapsuleタイトル:<%= @picture.title %>
+Timecapsule詳細:下記リンクからご覧ください
+<%= link_to("Timecapsule for you", controller: :picture, id: @picture.id, action: :image_show, pass: @picture.image_name, pass2: @picture.title) %>
+Timecapsuleへのログインはこちらから
+<%= link_to("Start a Timecapsule", controller: :home, action: :top) %>

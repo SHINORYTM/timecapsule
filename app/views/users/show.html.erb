@@ -25,10 +25,10 @@
       </div>
 
       <% if flash[:notice] %>
-      <div class="flash">
+       <div class="flash">
         <%= flash[:notice] %>
-      </div>
-     <% end %>
+       </div>
+      <% end %>
 
       <div class="clear"></div>
     </header>
@@ -41,16 +41,19 @@
       <div class="row album">
       <% @pictures.each do |picture| %>
        <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <% if picture.status == "stand_by" %><div class="mb-1"><span class="fa fa-envelope"></span> 送信待機中</div><% end %>
+        <% if picture.status == "completion" %><div class="mb-1"><span class="fa fa-share-square"></span> 送信完了</div><% end %>
+        <% if picture.status == "none" %><div class="mb-1"><span class="fa fa-envelope-square"></span> 未送信</div><% end %>
        <div class="card img-thumbnail"> 
-        <%= link_to image_tag("/images/#{picture.image_name}", {:class => "card-img-top"}), {:controller => :picture, :id => picture.id, :action => :image_show, :sent => :email}, {:target => "_blank"} %>
+        <%= link_to image_tag("/images/#{picture.image_name}", {:class => "card-img-top"}), {:controller => :picture, :id => picture.id, :action => :image_show, :pass => picture.image_name, :pass2 => picture.title}, {:target => "_blank"} %>
             
          <div class="card-body px-2 py-3">
           <h4 class="card-title text-center image_title text-secondary title"><%= "title：#{picture.title}" %></h4>
           <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2 title") %>
           <%= link_to("Timecapsuleを削除", "/picture/#{picture.id}/destroy", {method: "post", :class => "image_destroy title",data: { :confirm => '削除します。よろしいですか?'} }) %>
-          <%= link_to("Timecapsuleを送信", "/picture/#{picture.id}/make_email", {:class => "sent_email title",data: { :confirm => 'Timecapsuleを届けます。よろしいですか？'} }) %>
+          <%= link_to("Timecapsuleを送信", "/picture/#{picture.id}/confirm_mail", {:class => "sent_email title",data: { :confirm => 'Timecapsuleを届けます。よろしいですか?' } }) %>
          </div>
-       </div>    
+       </div>   
        </div>
       <% end %> 
       </div> 

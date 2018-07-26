@@ -11,8 +11,6 @@ ul{
  margin-bottom:0;
 }
 
-
-
 .wrapper{
     background-image: url("/2ecee3019417a5ba44df3cfa5f047d4c_m.jpg");
     background-size:cover;
@@ -84,6 +82,10 @@ h7{
 input{
     width:400px;
     text-align:center;
+}
+
+input_time{
+    width:400px;
 }
 
 /** show.html.erb */

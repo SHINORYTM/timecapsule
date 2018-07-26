@@ -21,6 +21,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:notice] = "アカウント登録が完了しました"
       redirect_to("/users/#{@user.id}")
+      MakeMailer.create_account(@user).deliver
     else
       render("users/new")
     end
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "ユーザー情報を編集しました"
       redirect_to("/users/#{@user.id}")
+      MakeMailer.update_account(@user).deliver
     else
       render("users/edit")
     end

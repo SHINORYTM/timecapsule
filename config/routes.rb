@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   get "picture/:id/image_edit" => "picture#image_edit"
   post "picture/:id/update" => "picture#update"
   get "picture/:id/image_show" => "picture#image_show"
-  get "picture/:id/make_email" => "picture#make_email"
-  get "picture/:id/redirect" => "picture#redirect"
+  get "picture/:id/confirm_mail" => "picture#confirm_mail"
 
 end

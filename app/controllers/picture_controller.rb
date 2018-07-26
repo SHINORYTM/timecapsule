@@ -3,28 +3,41 @@ class PictureController < ApplicationController
   before_action :authenticate_user, {only: [:create,:make,:image_edit]}
   before_action :ensure_correct_user, {only: [:create,:make]}
   before_action :ensure_correct_user_id, {only: [:image_edit]}
-  before_action :request_referer, {only: [:image_show]}
+  before_action :currect_acssecer, {only: [:image_show]}
   
   def make
     @user = User.find_by(id: params[:id])
     @picture =Picture.new
   end
 
-  def make_email
+  def self.batch
+    if Picture.send_date?.present?
+      Picture.send_date?.each do |picture|
+       MakeMailer.send_the_work(picture).deliver
+       picture.status = "completion"
+       picture.save
+      end
+    end 
+  end
+
+  def confirm_mail
     @picture=Picture.find_by(id: params[:id])
     @user=@current_user
 
     if @picture.present?
-      MakeMailer.make_email(@user,@picture).deliver
+      MakeMailer.confirm_mail(@user,@picture).deliver
+      @picture.status = "stand_by"
+      @picture.save
       redirect_to("/users/#{@user.id}")
       flash[:notice] = "Timecapsule【title:#{@picture.title}】を送信しました"
     end 
   end
 
-  def redirect
+  def currect_acssecer
     @picture = Picture.find_by(id: params[:id])
-    if params[:sent].present? 
-     render("/picture/image_show")
+    @user =@current_user
+    if params[:pass2] == @picture.title && params[:pass] == @picture.image_name
+     render("picture/image_show")
     else
      flash[:notice] = "権限がありません"
      redirect_to("/")
@@ -37,7 +50,8 @@ class PictureController < ApplicationController
        title: params[:title],
        coment: params[:coment],
        user_id: @user.id,
-       sent_email: params[:sent_email]
+       sent_email: params[:sent_email],
+       send_time: params[:send_time]
     )
     
     if params[:image]
@@ -70,12 +84,14 @@ class PictureController < ApplicationController
     @picture.title = params[:title]
     @picture.coment = params[:coment]
     @picture.sent_email=params[:sent_email]
+    @picture.send_time = params[:send_time]
     @user=@current_user 
+
     if @picture.save
       flash[:notice] = "Timecapsuleを編集しました"
       redirect_to("/users/#{@picture.user.id}")
     else
-      @error_message = "タイトル名が未入力です"
+      @error_message = "記入漏れがあります"
       render("picture/image_edit")
     end
   end
@@ -102,15 +118,5 @@ class PictureController < ApplicationController
       redirect_to("/users/#{@current_user.id}")
     end
   end
-
-  def request_referer
-      @picture = Picture.find_by(id: params[:id])
-      referer = request.env['HTTP_REFERER']
-      if referer.blank? || params[:sent].blank?
-        flash[:notice] = "権限がありません"
-        redirect_to("/")
-      end
-  end 
-  
 
 end

@@ -39,7 +39,8 @@
          <div class="input mt-3 mb-3"><input name="sent_email" value="<%= @picture.sent_email %>" placeholder="メールアドレス<送信先＞"></div>
          <img class="edit-img-top img-fluid" src="<%= "/images/#{@picture.image_name}" %>">
          <div class="input mt-3 mb-3"><input name="title" value="<%= @picture.title %>" placeholder="title"></div>
-         <div class="textarea mt-3 mb-3"><textarea name="coment" cols="45" rows="6" placeholder="メッセージ"><%= @picture.coment %></textarea></div>
+         <div class="textarea mt-3 mb-2"><textarea name="coment" cols="45" rows="6" placeholder="メッセージ"><%= @picture.coment %></textarea></div>
+         <div class="h6 input_time mt-3 mb-3">送信予定日: <input type="datetime-local" name="send_time" step="60" value="2018-07-28T08:00"></div>
          <div class="input create_account mb-3"><input type="submit" value="編集"></div>
         <% end %>
     </div>
