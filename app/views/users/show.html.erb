@@ -10,10 +10,11 @@
         <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
         </li>
       </ul>
+
       <div class="dropdown">
         <!-- 切替ボタンの設定 -->
         <button type="button" class="btn btn-warning text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= @current_user.name %>
+         <span class="fa fa-user"></span> <%= @current_user.name %>
         </button>
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -32,40 +33,215 @@
 
       <div class="clear"></div>
     </header>
-
-
+    
+    <ul class="nav nav-tabs p-3">
+     <li class="nav-item bg-white mr-2">
+      <a href="#tab1" class="nav-link active title text-warning" data-toggle="tab"><span class="fa fa-globe"></span> 一 覧</a>
+     </li>
+     <li class="nav-item bg-white mr-2">
+      <a href="#tab2" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-envelope-square"></span> 未送信</a>
+     </li>
+     <li class="nav-item bg-white mr-2">
+      <a href="#tab3" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-envelope"></span> 待機中</a>
+     </li>
+     <li class="nav-item bg-white">
+      <a href="#tab4" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-share-square"></span> 完 了</a>
+     </li>
+    </ul>
+    
   
   <div class="container">
+    <div class="tab-content">
+     <div id="tab1" class="tab-pane active">
+    <!-- 作品がある場合 -->
     <% if @pictures.present? %>
-     <h4 class="h3 title text-warning text-center mt-3">Timecapsule一覧</h4>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-globe"></span> Timecapsule一覧</h4>
       <div class="row album">
       <% @pictures.each do |picture| %>
        <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
         <% if picture.status == "stand_by" %><div class="mb-1"><span class="fa fa-envelope"></span> 送信待機中</div><% end %>
         <% if picture.status == "completion" %><div class="mb-1"><span class="fa fa-share-square"></span> 送信完了</div><% end %>
         <% if picture.status == "none" %><div class="mb-1"><span class="fa fa-envelope-square"></span> 未送信</div><% end %>
-       <div class="card img-thumbnail"> 
+
+       <div class="card img-thumbnail">
+
         <%= link_to image_tag("/images/#{picture.image_name}", {:class => "card-img-top"}), {:controller => :picture, :id => picture.id, :action => :image_show, :pass => picture.image_name, :pass2 => picture.title}, {:target => "_blank"} %>
             
-         <div class="card-body px-2 py-3">
-          <h4 class="card-title text-center image_title text-secondary title"><%= "title：#{picture.title}" %></h4>
-          <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2 title") %>
-          <%= link_to("Timecapsuleを削除", "/picture/#{picture.id}/destroy", {method: "post", :class => "image_destroy title",data: { :confirm => '削除します。よろしいですか?'} }) %>
-          <%= link_to("Timecapsuleを送信", "/picture/#{picture.id}/confirm_mail", {:class => "sent_email title",data: { :confirm => 'Timecapsuleを届けます。よろしいですか?' } }) %>
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= picture.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "/picture/#{picture.id}/image_edit", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/picture/#{picture.id}/destroy", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+             <%= link_to("Timecapsuleを送信", "/picture/#{picture.id}/confirm_mail", {:class => "sent_email title dropdown-item",data: { :confirm => 'Timecapsuleを届けます。よろしいですか?' } }) %>
+            </div><!-- /.dropdown-menu -->
+           </div>
          </div>
-       </div>   
+
+       </div> 
+
        </div>
       <% end %> 
       </div> 
+
     <% else %>
-   <div class="container mx-auto text-center">
-   <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
-   <%= link_to("Timecapsule作成", "/picture/#{@user.id}/make", :class => "h5 image_nil mt-5 title text-white") %>
-   </div>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/picture/#{@user.id}/make", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
     <% end %>
+    
+  <!-- ここからタブ２〜４作成 --> 
+   </div>
+   <div id="tab2" class="tab-pane"> 
+   <!-- 作品（未送信）がある場合 -->
+    <% if @pictures_none.present? %>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-envelope-square"></span> Timecapsule　none</h4>
+      <div class="row album">
+      <% @pictures_none.each do |picture_none| %>
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
+        <% if picture_none.status == "stand_by" %><div class="mb-1"><span class="fa fa-envelope"></span> 送信待機中</div><% end %>
+        <% if picture_none.status == "completion" %><div class="mb-1"><span class="fa fa-share-square"></span> 送信完了</div><% end %>
+        <% if picture_none.status == "none" %><div class="mb-1"><span class="fa fa-envelope-square"></span> 未送信</div><% end %>
+
+       <div class="card img-thumbnail">
+
+        <%= link_to image_tag("/images/#{picture_none.image_name}", {:class => "card-img-top"}), {:controller => :picture, :id => picture_none.id, :action => :image_show, :pass => picture_none.image_name, :pass2 => picture_none.title}, {:target => "_blank"} %>
+            
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= picture_none.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "/picture/#{picture_none.id}/image_edit", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/picture/#{picture_none.id}/destroy", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+             <%= link_to("Timecapsuleを送信", "/picture/#{picture_none.id}/confirm_mail", {:class => "sent_email title dropdown-item",data: { :confirm => 'Timecapsuleを届けます。よろしいですか?' } }) %>
+            </div><!-- /.dropdown-menu -->
+           </div>
+         </div>
+
+       </div> 
+
+       </div>
+      <% end %> 
+      </div> 
+
+    <% else %>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/picture/#{@user.id}/make", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
+    <% end %>
+   </div>
+   <div id="tab3" class="tab-pane"> 
+   <!-- 作品（待機中）がある場合 -->
+    <% if @pictures_stand_by.present? %>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-envelope"></span> Timecapsule　stand_by</h4>
+      <div class="row album">
+      <% @pictures_stand_by.each do |picture_stand_by| %>
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
+        <% if picture_stand_by.status == "stand_by" %><div class="mb-1"><span class="fa fa-envelope"></span> 送信待機中</div><% end %>
+        <% if picture_stand_by.status == "completion" %><div class="mb-1"><span class="fa fa-share-square"></span> 送信完了</div><% end %>
+        <% if picture_stand_by.status == "none" %><div class="mb-1"><span class="fa fa-envelope-square"></span> 未送信</div><% end %>
+
+       <div class="card img-thumbnail">
+
+        <%= link_to image_tag("/images/#{picture_stand_by.image_name}", {:class => "card-img-top"}), {:controller => :picture, :id => picture_stand_by.id, :action => :image_show, :pass => picture_stand_by.image_name, :pass2 => picture_stand_by.title}, {:target => "_blank"} %>
+            
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= picture_stand_by.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "/picture/#{picture_stand_by.id}/image_edit", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/picture/#{picture_stand_by.id}/destroy", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+             <%= link_to("Timecapsuleを送信", "/picture/#{picture_stand_by.id}/confirm_mail", {:class => "sent_email title dropdown-item",data: { :confirm => 'Timecapsuleを届けます。よろしいですか?' } }) %>
+            </div><!-- /.dropdown-menu -->
+           </div>
+         </div>
+
+       </div> 
+
+       </div>
+      <% end %> 
+      </div> 
+
+    <% else %>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/picture/#{@user.id}/make", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
+    <% end %>
+   </div>
+   <div id="tab4" class="tab-pane">
+   <!-- 作品（完了）がある場合 -->
+    <% if @pictures_completion.present? %>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-share-square"></span> Timecapsule　completion</h4>
+      <div class="row album">
+      <% @pictures_completion.each do |picture_completion| %>
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
+        <% if picture_completion.status == "stand_by" %><div class="mb-1"><span class="fa fa-envelope"></span> 送信待機中</div><% end %>
+        <% if picture_completion.status == "completion" %><div class="mb-1"><span class="fa fa-share-square"></span> 送信完了</div><% end %>
+        <% if picture_completion.status == "none" %><div class="mb-1"><span class="fa fa-envelope-square"></span> 未送信</div><% end %>
+
+       <div class="card img-thumbnail">
+
+        <%= link_to image_tag("/images/#{picture_completion.image_name}", {:class => "card-img-top"}), {:controller => :picture, :id => picture_completion.id, :action => :image_show, :pass => picture_completion.image_name, :pass2 => picture_completion.title}, {:target => "_blank"} %>
+            
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= picture_completion.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "/picture/#{picture_completion.id}/image_edit", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/picture/#{picture_completion.id}/destroy", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+             <%= link_to("Timecapsuleを送信", "/picture/#{picture_completion.id}/confirm_mail", {:class => "sent_email title dropdown-item",data: { :confirm => 'Timecapsuleを届けます。よろしいですか?' } }) %>
+            </div><!-- /.dropdown-menu -->
+           </div>
+         </div>
+
+       </div> 
+
+       </div>
+      <% end %> 
+      </div> 
+
+    <% else %>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/picture/#{@user.id}/make", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
+    <% end %>
+   </div>
+  </div>
+　<!-- ここまでタブ -->
+
   </div>
 
 </div>
+
+      
 
 
 

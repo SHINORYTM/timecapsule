@@ -49,6 +49,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @pictures=Picture.where(user_id: @user.id)
+    @pictures_none = Picture.where(user_id: @user.id, status: "none")
+    @pictures_stand_by = Picture.where(user_id: @user.id, status: "stand_by")
+    @pictures_completion = Picture.where(user_id: @user.id, status: "completion")
   end
 
   def login_form

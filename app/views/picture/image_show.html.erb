@@ -18,6 +18,7 @@
    <% else %>
     <div class="h5 text-white title text-left">status:未送信</div>
    <% end %>
+     <div class="h5 my-2 title  text-white text-left"><%= "send_to：#{@picture.sent_email}" %></div>
      <div class="h5 my-2 title  text-white text-left"><%= "send_at：#{@picture.send_time}" %></div>
   <% end %>
 </div>

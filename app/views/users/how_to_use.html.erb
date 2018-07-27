@@ -12,7 +12,7 @@
       <div class="dropdown">
         <!-- 切替ボタンの設定 -->
         <button type="button" class="btn btn-warning text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= @current_user.name %>
+         <span class="fa fa-user"></span> <%= @current_user.name %>
         </button>
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -35,10 +35,12 @@
  <div class="use mt-4 pb-3">
   <h3 class="title text-warning">SAMPLE(TIME CAPSULEの使い方)</h3>
   <h4 class="title explain">使い方はとてもシンプル</h4>
-  <P>①使用する写真を選択し、アップロード<br>
-  ②好きなページに写真をレイアウト<br>
-  ③メッセージを添付<br>
-  ④送信する相手、送信する年月日を指定</p>
+  <div class="to_use text-center">
+   <P class="d-inline-block text-left">①使用する写真を選択し、アップロード<br>
+   ②好きなページに写真をレイアウト<br>
+   ③メッセージを添付<br>
+   ④送信する相手、送信する年月日を指定</p>
+  </div>
   <h4 class="title explain">大切な人と思い出を共有しよう</h4>
  </div>
 
