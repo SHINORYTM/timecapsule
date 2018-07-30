@@ -27,5 +27,10 @@ Rails.application.routes.draw do
   post "picture/:id/update" => "picture#update"
   get "picture/:id/image_show" => "picture#image_show"
   get "picture/:id/confirm_mail" => "picture#confirm_mail"
+  post "picture/:id/favarite" => "picture#favarite"
+  post "picture/:id/favarite_destroy" => "picture#favarite_destroy"
+  #test_code
+  get "picture/:id/create_work" => "picture#create_work"
+  get "picture/:id/upload" => "picture#upload"
 
 end

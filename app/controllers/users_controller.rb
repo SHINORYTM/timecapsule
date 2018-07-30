@@ -52,6 +52,7 @@ class UsersController < ApplicationController
     @pictures_none = Picture.where(user_id: @user.id, status: "none")
     @pictures_stand_by = Picture.where(user_id: @user.id, status: "stand_by")
     @pictures_completion = Picture.where(user_id: @user.id, status: "completion")
+    @pictures_favarite = Picture.where(user_id: @user.id) && Picture.where("favarite IS NOT NULL")
   end
 
   def login_form

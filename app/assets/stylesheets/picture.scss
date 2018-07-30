@@ -3,7 +3,45 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 * {
     box-sizing: border-box;
+}
+
+  .upload{
+      border-top:solid 1px;
+      border-color:lightgray;
   }
+
+  .sample_picture{
+    max-width:220px;
+    max-height:150px;
+  }
+
+  .keyboad{
+      border-radius:3px;
+      background-color:gray;
+  }
+
+.cd_page_next{
+    background-color:orange;
+    border-radius:3px;
+}
+
+.cd_page_pre{
+    background-color:orange;
+    border-radius:3px;
+    opacity:0.5;
+}
+
+  .advice{
+      color:gray;
+  }
+
+  .btn-upload{
+    width:300px;
+}
+
+.btn-upload:hover{
+    opacity:0.7;
+}
 
 .input_time{
     display:inline-block;

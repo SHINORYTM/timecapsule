@@ -10,6 +10,16 @@ class PictureController < ApplicationController
     @picture =Picture.new
   end
 
+  def create_work
+    @user = User.find_by(id: params[:id])
+    @picture =Picture.new
+  end
+
+  def upload
+    @user = User.find_by(id: params[:id])
+    @picture =Picture.find_by(user_id: @user.id)
+  end
+
   def self.batch
     if Picture.send_date?.present?
       Picture.send_date?.each do |picture|
@@ -101,6 +111,22 @@ class PictureController < ApplicationController
     @picture=Picture.find_by(id: params[:id])
     @picture.destroy
     flash[:notice] = "Timecapsuleを削除しました"
+    redirect_to("/users/#{@user.id}")
+  end
+
+  def favarite
+    @user=@current_user
+    @picture=Picture.find_by(id: params[:id])
+    @picture.favarite = @picture.id
+    @picture.save
+    redirect_to("/users/#{@user.id}")
+  end
+
+  def favarite_destroy
+    @user=@current_user
+    @picture=Picture.find_by(id: params[:id])
+    @picture.favarite = nil
+    @picture.save
     redirect_to("/users/#{@user.id}")
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_26_025715) do
+ActiveRecord::Schema.define(version: 2018_07_28_113730) do
 
   create_table "pictures", force: :cascade do |t|
     t.string "image_name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_025715) do
     t.string "sent_email"
     t.datetime "send_time"
     t.string "status", default: "none"
+    t.integer "favarite"
   end
 
   create_table "users", force: :cascade do |t|
