@@ -10,14 +10,81 @@
       border-color:lightgray;
   }
 
+  .reset{
+    border-radius:3px;
+  }
+
+  .reset_bg{
+    border-radius:3px;
+  }
+
+  .reset:hover{
+      opacity:0.7;
+  }
+
+  .reset_bg:hover{
+    opacity:0.7;
+}
+
   .sample_picture{
+    max-width:450px;
+    max-height:400px;
+  }
+
+  .sample_picture2{
     max-width:220px;
     max-height:150px;
+  }
+ 
+  .config_page{
+      background-color:skyblue;
+      max-height:30px;
+      
+  }
+
+  .config_page:hover{
+    opacity:0.7;
+}
+
+  .config_sample{
+    max-width:450px;
+    max-height:400px;
+  }
+
+  .config_sample2{
+    max-width:300px;
+    max-height:200px;
+    transform: rotate(-10deg);
+    -moz-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);  
+    border-radius:3px;
+  }
+
+  .config_sample3{
+    max-width:250px;
+    max-height:180px;
+    transform: rotate(10deg);
+    -moz-transform: rotate(10deg);
+    -webkit-transform: rotate(10deg);  
   }
 
   .keyboad{
       border-radius:3px;
       background-color:gray;
+  }
+
+  .config{
+      border-right:solid 1px;
+      border-right-color:lightgray;
+  }
+
+  .config_bg{
+    max-width:220px;
+    max-height:150px; 
+  }
+
+  .config_bg:hover{
+    opacity:0.7;
   }
 
 .cd_page_next{

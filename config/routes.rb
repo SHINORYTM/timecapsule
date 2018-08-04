@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   #test_code
   get "picture/:id/create_work" => "picture#create_work"
   get "picture/:id/upload" => "picture#upload"
+  get "picture/:id/edit_album" => "picture#edit_album"
+  get "picture/:id/create_album" => "picture#create_album"
 
 end

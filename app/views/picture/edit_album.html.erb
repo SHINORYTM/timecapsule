@@ -1,0 +1,90 @@
+<div class="login_wrapper">
+    <header class="head pb-2 pt-2 bg-warning bg-light title">
+      <h3><%=link_to "T C","/users/#{@user.id}",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
+      <ul　class="login_menu">
+        <li class="title text-warning menu">
+         <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
+        </li>
+        <li class="title text-warning menu">
+        <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <!-- 切替ボタンの設定 -->
+        <button type="button" class="btn btn-warning text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="fa fa-user"></span> <%= @current_user.name %>
+        </button>
+        <!-- ドロップメニューの設定 -->
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
+          <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
+          <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
+          <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
+        </div><!-- /.dropdown-menu -->
+      </div>
+
+      <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+      <% end %>
+
+      <div class="clear"></div>
+    </header>
+
+    <div class="h5 text-danger mb-2 mt-4 mx-auto text-center title">Timecapsuleのページ数と背景を選んでください</div>
+
+    <div class="container mt-3">
+     <div class="row">
+      <div class="config col-sm-2 col-md-2 py-3 mt-3 row-eq-height bg-light">
+       <p class="w-100">１.ページ数 <span class="fa fa-reply reset bg-warning p-1"></span></p>
+       <p class="config_page w-100 pl-3 pt-1">1<span class="d-sm-none d-md-inline">ページ</span></p>
+       <p class="config_page w-100 pl-3 pt-1">2<span class="d-sm-none d-md-inline">ページ</span></p>
+       <p class="config_page w-100 pl-3 pt-1">3<span class="d-sm-none d-md-inline">ページ</span></p>
+       <p class="config_page w-100 pl-3 pt-1">4<span class="d-sm-none d-md-inline">ページ</span></p>  
+
+      </div>
+      <div class="col-sm-2 col-md-2 py-3 mt-3 row-eq-height bg-light">
+       <p>２.背景 <span class="fa fa-reply reset_bg bg-warning p-1"></span></p>
+       <p class="config_bg w-100 mb-2"><img src="<%="/sample3.jpg"%>" class="img-fluid card-img"></p>
+       <p class="config_bg w-100 mb-2"><img src="<%="/sample4.jpg"%>" class="img-fluid card-img"></p>
+       <p class="config_bg w-100"><img src="<%="/sample5.jpg"%>" class="img-fluid card-img"></p>    
+      </div>
+      <div class="col-sm-8 col-md-8 py-3 mt-3 row-eq-height sample_image">
+       <p class="title h4 w-100 text-danger text-center">Sample</p>
+        <div id="carouselExampleSlidesOnly" class="carousel slide mx-auto" data-ride="carousel">
+         <!-- スライドさせる画像の設定 -->
+          <div class="carousel-inner">
+           <div class="carousel-item">
+            <img class="d-block w-100 config_sample" src="<%="/sample13.jpg"%>" alt="第1スライド">
+             </div><!-- /.carousel-item -->
+           <div class="carousel-item  active">
+            <img class="d-block w-100 config_sample" src="<%="/sample10.jpg"%>" alt="第2スライド">
+             </div><!-- /.carousel-item -->
+           <div class="carousel-item">
+            <img class="d-block w-100 config_sample" src="<%="/sample11.jpg"%>" alt="第3スライド">
+             </div><!-- /.carousel-item -->
+          </div><!-- /.carousel-inner -->
+         <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">前へ</span>
+         </a>
+         <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">次へ</span>
+         </a>
+          
+        </div>
+       
+      </div>
+     </div>
+    </div> 
+
+
+    <div class="mt-4 mx-auto text-center">
+     <a class="cd_page_next py-2 px-3 mr-2 text-white" href="#"><span class="fa fa-angle-double-left"></span> 前へ</a>
+     <a class="cd_page_next py-2 px-3 mr-2 text-white" href="#">次へ<span class="fa fa-angle-double-right"></span></a>
+    </div>    
+
+</div>
+    

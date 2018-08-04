@@ -20,6 +20,16 @@ class PictureController < ApplicationController
     @picture =Picture.find_by(user_id: @user.id)
   end
 
+  def edit_album
+    @user = User.find_by(id: params[:id])
+    @picture =Picture.find_by(user_id: @user.id)
+  end
+
+  def create_album
+    @user = User.find_by(id: params[:id])
+    @picture =Picture.find_by(user_id: @user.id)
+  end
+
   def self.batch
     if Picture.send_date?.present?
       Picture.send_date?.each do |picture|
