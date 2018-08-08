@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'album/create'
+  get 'image/create'
   get 'picture/create'
   #home
   get '/' => "home#top"
@@ -29,10 +31,14 @@ Rails.application.routes.draw do
   get "picture/:id/confirm_mail" => "picture#confirm_mail"
   post "picture/:id/favarite" => "picture#favarite"
   post "picture/:id/favarite_destroy" => "picture#favarite_destroy"
-  #test_code
-  get "picture/:id/create_work" => "picture#create_work"
-  get "picture/:id/upload" => "picture#upload"
-  get "picture/:id/edit_album" => "picture#edit_album"
-  get "picture/:id/create_album" => "picture#create_album"
+  
+  #album
+  get "album/:id/create" => "album#create"
+  get "album/:id/upload" => "album#upload"
+  get "album/:id/edit_album" => "album#edit_album"
+  get "album/:id/create_album" => "album#create_album"
+  
+  #image
+  post "image/:id/registration" => "image#registration"
 
 end

@@ -67,3 +67,6 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 
 gem 'whenever', :require => false
+
+gem 'carrierwave'
+gem 'dropzonejs-rails'

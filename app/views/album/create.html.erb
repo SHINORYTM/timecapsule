@@ -67,7 +67,7 @@
        <p class="mx-auto">Macの場合「Ctrl」キーは「command」です</p>
       </div>
       <div class="col-sm-12 col-md-12 row-eq-height mx-auto pt-1 pb-3 upload">
-        <input type="button" class="btn btn-upload bg-primary text-white mt-3 mx-auto" value="写真をアップロードする" >
+        <input type="button" class="btn btn-upload bg-primary text-white mt-3 mx-auto btn_up" value="写真をアップロードする↓" >
         <input type="button" class="btn btn-upload bg-warning text-white mt-3 mx-auto" value="アップロード済みの写真で作成" >
       </div>
      </div>
@@ -75,4 +75,16 @@
 
     
 
+ <%= form_tag("/image/#{@user.id}/registration", class: 'dropzone mt-3 w-50 mx-auto text-center', id: 'uploaddropzone') do %>
+   <span>
+   <i class="fa fa-image"></i>
+   Drag and drop your files
+   </span>
+   
+ <% end %>
+ <div class="mx-auto text-center mt-4"><a class="cd_page_next py-2 px-3 text-white mx-auto" href="#">写真を確認 <span class="fa fa-angle-double-right"></span></a></div>
+
+
+ 
 </div>
+

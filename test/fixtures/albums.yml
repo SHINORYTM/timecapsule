@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  send_time: 2018-08-04 12:37:32
+  target_for: MyString
+  title: MyString
+  status: MyString
+  favorite: 1
+
+two:
+  user_id: 1
+  send_time: 2018-08-04 12:37:32
+  target_for: MyString
+  title: MyString
+  status: MyString
+  favorite: 1
