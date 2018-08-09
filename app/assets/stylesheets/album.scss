@@ -1,3 +1,16 @@
 // Place all the styles related to the album controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//create go to uploadpage
+.to_upload{
+    border-radius:5px;
+}
+
+.dropzone{
+  line-height:60px;
+  color: #ccc;
+  border-style: dashed;
+  border-width: 2px;
+  text-align: center;
+  cursor: pointer;
+}
