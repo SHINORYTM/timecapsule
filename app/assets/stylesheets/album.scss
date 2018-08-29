@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 //create go to uploadpage
+
+//image/create
 .to_upload{
     border-radius:5px;
 }
@@ -14,3 +16,266 @@
   text-align: center;
   cursor: pointer;
 }
+
+//image/upload
+.btn_destroy_close{
+  display:none;
+}
+
+.btn_destroy_open{
+  display:block;
+  border-radius:5px;
+}
+
+//edit_message
+.submit_message{
+  background-color:orange;
+  border-radius:5px;
+  padding:5px 0;
+}
+
+.submit_message:hover{
+  opacity:0.7;
+}
+
+
+//image/edit_album
+.cd_page{
+  background-color:orange;
+  border-radius:5px;
+  display:inline-block;
+}
+
+.cd_page:hover{
+  opacity:0.7;
+  cursor:pointer;
+}
+
+.non_select{
+  max-height:30px;
+  }
+
+.bg_color:hover{
+    opacity:0.7;
+  }
+
+.config_bg{
+  max-width:220px;
+  max-height:150px; 
+}
+
+.config_bg:hover{
+  cursor:pointer;
+  opacity:0.7;
+}
+
+.plus:hover{
+  opacity:0.7;
+  cursor:pointer;
+}
+
+.minus:hover{
+  opacity:0.7;
+  cursor:pointer;
+}
+
+.reset_bg:hover{
+  opacity:0.7;
+  cursor:pointer;
+}
+
+.img_layout{
+  position:relative;
+}
+
+.page_date{
+  opacity:0.7;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  display:none;
+}
+
+.config_name{
+  border-bottom:2px solid lightgray; 
+}
+
+//create_album
+.layout_top2{
+  background-color:rgb(235, 72, 154);
+  padding:20px 0;
+}
+
+.layout_middle{
+  width:100%;
+  border-right:1px solid lightgray;
+  border-left:1px solid lightgray;
+  min-height:400px;
+  border-bottom:1px solid lightgray;
+}
+
+.layout_bottom2{
+  background-color:rgb(20, 187, 42);
+  padding:20px 0;
+}
+
+.layout_top3{
+  background-color:rgb(197, 17, 221);
+  padding:20px 0;
+}
+
+.layout_bottom3{
+  background-color:rgb(236, 240, 32);
+  padding:20px 0;
+}
+
+.layout_top{
+  background-color:rgb(31, 223, 236);
+  padding:20px 0;
+}
+
+.layout_bottom{
+  background-color:rgb(237, 240, 69);
+  padding:20px 0;
+}
+
+.config_form{
+  border-top:1px solid lightgray;
+  position:relative;
+}
+
+.config_format{
+  border:1px solid lightgray;
+}
+
+.plus_btn:hover{
+  opacity:0.7;
+}
+
+.minus_btn:hover{
+  opacity:0.7;
+}
+
+#listclear{
+  width:100%;
+  text-align:right;
+  color:rgb(243, 115, 10);
+}
+
+.pictureimage{
+  z-index:1000;
+}
+
+//edit_message
+
+#form-main{
+  width:60%;
+  margin:0 auto;
+  background-color:lightgray;
+  padding:30px 10px 0 10px;
+  border-radius:5px;
+}
+.feedback-input {
+  color:#3c3c3c;
+  font-family: Helvetica, Arial, sans-serif;
+font-weight:500;
+  font-size: 18px;
+  border-radius: 0;
+  line-height: 22px;
+  background-color: #fbfbfb;
+  padding: 13px 13px 13px 54px;
+  margin-bottom: 10px;
+  width:100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+border: 3px solid rgba(0,0,0,0);
+}
+
+.feedback-input:focus{
+  background: #fff;
+  box-shadow: 0;
+  border: 3px solid #3498db;
+  color: #3498db;
+  outline: none;
+padding: 13px 13px 13px 54px;
+}
+
+.focused{
+  color:#30aed6;
+  border:#30aed6 solid 3px;
+}
+
+/* Icons ---------------------------------- */
+#name_title{
+  background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
+  background-size: 30px 30px;
+  background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+#name_title:focus{
+  background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
+  background-size: 30px 30px;
+  background-position: 8px 5px;
+background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+#email{
+  background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
+  background-size: 30px 30px;
+  background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+#email:focus{
+  background-image: url(http://rexkirby.com/kirbyandson/images/email.svg);
+  background-size: 30px 30px;
+background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+#comment{
+  background-image: url(http://rexkirby.com/kirbyandson/images/comment.svg);
+  background-size: 30px 30px;
+  background-position: 11px 8px;
+  background-repeat: no-repeat;
+}
+
+.feedback-input textarea {
+  width: 100%;
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+
+
+#button-blue{
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  float:left;
+  width: 100%;
+  border: #fbfbfb solid 4px;
+  cursor:pointer;
+  background-color: #3498db;
+  color:white;
+  font-size:24px;
+  padding-top:22px;
+  padding-bottom:22px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+margin-top:-4px;
+font-weight:700;
+}
+
+#button-blue:hover{
+  background-color: rgba(0,0,0,0);
+  color: #0493bd;
+}
+
+
+  

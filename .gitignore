@@ -28,3 +28,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore dropzone-file.
+/public/uploads
+
+# Ignore picture-file.
+/public/images

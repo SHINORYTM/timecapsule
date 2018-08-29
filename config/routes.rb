@@ -35,10 +35,20 @@ Rails.application.routes.draw do
   #album
   get "album/:id/create" => "album#create"
   get "album/:id/upload" => "album#upload"
+  get "album/:id/edit_message" => "album#edit_message" 
   get "album/:id/edit_album" => "album#edit_album"
   get "album/:id/create_album" => "album#create_album"
-  
+  get "album/:id/preview" => "album#preview"
+  post "album/:id/album" => "album#album"
+  post "album/:id/destroy" => "album#destroy"
+  post "album/:id/confirm" => "album#confirm"
+
   #image
   post "image/:id/registration" => "image#registration"
+  post "image/:id/destroy" => "image#destroy"
 
+  #detail
+  post "detail/:id/create" => "detail#create"
+  post "detail/:id/destroy" => "detail#destroy"
+  
 end

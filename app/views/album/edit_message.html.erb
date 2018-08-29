@@ -1,0 +1,69 @@
+<div class="login_wrapper">
+    <header class="head pb-2 pt-2 bg-warning bg-light title">
+      <h3><%=link_to "T C","/users/#{@user.id}",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
+      <ul　class="login_menu">
+        <li class="title text-warning menu">
+         <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
+        </li>
+        <li class="title text-warning menu">
+        <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <!-- 切替ボタンの設定 -->
+        <button type="button" class="btn btn-warning text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="fa fa-user"></span> <%= @current_user.name %>
+        </button>
+        <!-- ドロップメニューの設定 -->
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
+          <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
+          <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
+          <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
+        </div><!-- /.dropdown-menu -->
+      </div>
+
+      <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+      <% end %>
+
+      <div class="clear"></div>
+    </header>
+
+    <div class="h5 text-danger mb-2 mt-4 mx-auto text-center title">宛先、タイトル、メッセージを記入してください</div>
+
+        <% if @error_message %>
+        <div class="form-error mt-3 mx-auto text-center">
+        <%= @error_message %>
+        </div>
+        <% end %>
+
+   <div class="container bg-light pt-3 pb-2 mx-auto text-center">
+    <%= form_tag("/album/#{@user.id}/album") do %>
+        <div id="form-main">
+        <div id="form-div">
+        
+        <p class="email">
+            <input name="target_for" type="text" class="validate[required,custom[email]] feedback-input text-center" id="email" placeholder="example@tc.com,example2@tc.com,example3@..." value="<%= @album.target_for %>"/>
+        </p>
+
+        <p class="title_name">
+            <input name="title" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input text-center" placeholder="Title" id="name_title" value="<%= @album.title %>"/>
+        </p>
+        
+        <p class="text">
+            <textarea name="message" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Message" value="<%= @album.message %>"></textarea>
+        </p>
+
+    </div>
+    </div>  
+        <%= link_to("/album/#{@user.id}/upload", :class => "cd_page_next py-2 px-3 mr-2 text-white") do %>
+         <span class="fa fa-angle-double-left"></span> アップロード画面へ
+        <% end %>
+        <input type="submit" value="設定画面へ" class="submit_message px-2 text-white mx-auto text-center">
+    <% end%>
+  </div><!-- /.container -->
+
+</div>

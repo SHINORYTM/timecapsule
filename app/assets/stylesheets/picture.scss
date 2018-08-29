@@ -10,22 +10,6 @@
       border-color:lightgray;
   }
 
-  .reset{
-    border-radius:3px;
-  }
-
-  .reset_bg{
-    border-radius:3px;
-  }
-
-  .reset:hover{
-      opacity:0.7;
-  }
-
-  .reset_bg:hover{
-    opacity:0.7;
-}
-
   .sample_picture{
     max-width:450px;
     max-height:400px;
@@ -35,16 +19,6 @@
     max-width:220px;
     max-height:150px;
   }
- 
-  .config_page{
-      background-color:skyblue;
-      max-height:30px;
-      
-  }
-
-  .config_page:hover{
-    opacity:0.7;
-}
 
   .config_sample{
     max-width:450px;
@@ -76,15 +50,6 @@
   .config{
       border-right:solid 1px;
       border-right-color:lightgray;
-  }
-
-  .config_bg{
-    max-width:220px;
-    max-height:150px; 
-  }
-
-  .config_bg:hover{
-    opacity:0.7;
   }
 
 .cd_page_next{

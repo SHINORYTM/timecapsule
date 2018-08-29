@@ -31,58 +31,44 @@
 
       <div class="clear"></div>
     </header>
-
-    <div class="h5 text-danger mt-4 mx-auto text-center"><アップロードされた写真を確認してください></div>
+    
+     <% if @images.present? %>
+      <div class="h5 text-danger mt-4 mx-auto text-center">アップロードされた写真で問題なければ【作成画面】へ進んでください</div>
+     <% else %>
+      <div class="h5 text-danger mt-4 mx-auto text-center">アップロードしている写真がありません</div>
+     <% end %>
 
     <div class="container mt-3 bg-light">
      <div class="row album bg-light">
-      <% #@images.each do |image| %>
-        <div class="col-sm-3 col-md-2 py-3 mr-1 mt-3 row-eq-height work mx-auto bg-light">
+      <% if @images.present? %>
+       <% @images.each do |image| %>
+        <div class="col-sm-4 col-md-2 py-3 mr-1 mt-3  picture mx-auto bg-light">
          <div class="card img-thumbnail bg-light upload_image">
-          <img src="<%="/screenshot.jpg"%>" class="img-fluid card-img">
+          <img src="<%="#{image.image}"%>" class="img-fluid">
          </div>
+          <%= link_to("写真を削除", "/image/#{image.id}/destroy", {method: "post", :class => "bg-warning text-white text-center mt-1 mx-auto p-1 title btn_destroy_close picture_edit",data: { :confirm => '削除します。よろしいですか?'} }) %>
         </div>
-        <div class="col-sm-3 col-md-2 py-3 mr-1 mt-3 row-eq-height work mx-auto bg-light">
-         <div class="card img-thumbnail bg-light upload_image">
-          <img src="<%="/screenshot.jpg"%>" class="img-fluid card-img">
-         </div>
-        </div>
-        <div class="col-sm-3 col-md-2 py-3 mr-1 mt-3 row-eq-height work mx-auto bg-light">
-         <div class="card img-thumbnail bg-light upload_image">
-          <img src="<%="/screenshot.jpg"%>" class="img-fluid card-img">
-         </div>
-        </div>
-        <div class="col-sm-3 col-md-2 py-3 mr-1 mt-3 row-eq-height work mx-auto bg-light">
-         <div class="card img-thumbnail bg-light upload_image">
-          <img src="<%="/screenshot.jpg"%>" class="img-fluid card-img">
-         </div>
-        </div>
-        <div class="col-sm-3 col-md-2 py-3 mr-1 mt-3 row-eq-height work mx-auto bg-light">
-         <div class="card img-thumbnail bg-light upload_image">
-          <img src="<%="/screenshot.jpg"%>" class="img-fluid card-img">
-         </div>
-        </div>
-        <div class="col-sm-3 col-md-2 py-3 mr-1 mt-3 row-eq-height work mx-auto bg-light">
-         <div class="card img-thumbnail bg-light upload_image">
-          <img src="<%="/screenshot.jpg"%>" class="img-fluid card-img">
-         </div>
-        </div>
-        <div class="col-sm-3 col-md-2 py-3 mr-1 mt-2 row-eq-height work mx-auto bg-light">
-         <div class="card img-thumbnail bg-light upload_image">
-          <img src="<%="/screenshot.jpg"%>" class="img-fluid card-img">
-         </div>
-        </div>       
-      <% #end %> 
+        
+       <% end %>
+      <% else %>
+       <div class="h3 text-warning mx-auto text-center title py-5">No Image</div>
+      <% end %> 
      </div> 
     </div>
 
     <div class="mt-4 mx-auto text-center">
+     <% if @images.present? %>
       <%= link_to("/album/#{@user.id}/create", :class => "cd_page_next py-2 px-3 mr-3 text-white") do %>
        <span class="fa fa-angle-double-left"></span> 写真を追加
       <% end %>
-      <%= link_to("/album/#{@user.id}/edit_album", :class => "cd_page_next py-2 px-3 mr-2 text-white") do %>
+      <%= link_to("/album/#{@user.id}/edit_message", :class => "cd_page_next py-2 px-3 mr-2 text-white") do %>
        作成画面へ <span class="fa fa-angle-double-right"></span>
       <% end %>
+     <% else %>
+      <%= link_to("/album/#{@user.id}/create", :class => "cd_page_next py-2 px-3 mr-3 text-white") do %>
+       <span class="fa fa-upload"></span> 写真をアップロードする
+      <% end %>
+     <% end %>
     </div> 
      
     </div>

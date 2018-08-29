@@ -14,22 +14,20 @@ class ImageUploader < CarrierWave::Uploader::Base
   "images"
   end
 
-  process convert: "jpg" 
+  
 
 # 拡張子 jpg jpeg gif png のみ許可
 def extension_white_list
   %w(jpg jpeg gif png)
 end
 
-# ファイル名は original.jpg で保存 (jpeg変換しているので拡張子は固定)
+# 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
 def filename
-  "original.jpg" if original_filename
+  super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
 end
 
   
- def content_type_whitelist
-      /image\//
- end
+ 
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

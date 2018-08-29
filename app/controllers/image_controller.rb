@@ -3,15 +3,22 @@ class ImageController < ApplicationController
   def registration
     @user = User.find_by(id: params[:id])
     @image = Image.new(  
-      user_id: @user.id
+      user_id: @user.id,
+      image: params[:file]
     )
-    respond_to do |format|
-      format.html
-      format.
+    @image.save   
+  end 
+
+  def destroy
+    @user=@current_user
+    @image = Image.find_by(id: params[:id])
+    if @image.present?
+       @image.destroy
+       flash[:notice] = "写真を削除しました"
+       redirect_to("/album/#{@user.id}/upload")
     end
+  end
 
-    @image.save
 
-  end  
 
 end

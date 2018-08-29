@@ -1,0 +1,20 @@
+<div class="layout_top w-100 mx-auto">
+ <div class="input_title mt-3 mb-1 text-center title h4"><%= @album.title %></div>
+</div>
+<div class="droparea layout_middle mx-auto bg-white h3 text-center pt-3 mb-0">
+ <% if current_page?(controller: 'album', action: 'create_album') %>
+  <div class="text"><i class="fa fa-image"></i> ここに画像をドラッグ＆ドロップ</div>
+ <% end %>
+ <% if current_page?(controller: 'album', action: 'preview') %>
+  <% @images.each do |image| %>        
+      <img src="<%="#{image.image}"%>" class="placed_img" name="image">   
+  <% end %>
+ <% end %>
+</div>
+<div class="layout_bottom w-100 mx-auto">
+ <div class="textarea mb-3 title h4 text-center message_form"><%= @album.message %></div>
+</div>
+<% if current_page?(controller: 'album', action: 'create_album') %>
+ <a href="javascript:void(0);" id="listclear" class="mt-1">＞選択クリア</a>
+<% end %>
+

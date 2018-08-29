@@ -36,21 +36,32 @@
 
     <div class="container mt-3">
      <div class="row">
-      <div class="config col-sm-2 col-md-2 py-3 mt-3 row-eq-height bg-light">
-       <p class="w-100">１.ページ数 <span class="fa fa-reply reset bg-warning p-1"></span></p>
-       <p class="config_page w-100 pl-3 pt-1">1<span class="d-sm-none d-md-inline">ページ</span></p>
-       <p class="config_page w-100 pl-3 pt-1">2<span class="d-sm-none d-md-inline">ページ</span></p>
-       <p class="config_page w-100 pl-3 pt-1">3<span class="d-sm-none d-md-inline">ページ</span></p>
-       <p class="config_page w-100 pl-3 pt-1">4<span class="d-sm-none d-md-inline">ページ</span></p>  
+      <div class="config col-sm-6 col-md-2 py-3 mt-3  bg-light">
+       <p class="w-100 config_name">ページ数</p>
+      <select>
+        <option value="1">１ページ</option>
+        <option value="2">２ページ</option>
+        <option value="3">３ページ</option>
+        <option value="4">４ページ</option>  
+      </select>
+        <p class="config_name">背景 <span class="fa fa-undo reset_bg p-1 mt-2"></span></p>
+        <%= form_tag("/album/#{@album.id}/create_album",{method: "get"}) do %>
+         <input type="hidden" name="layout" value="">
+          <img name="1" src="/sample3.jpg" alt="確認する" class="img-fluid card-img bg_color mb-2">
+          <img name="2" src="/sample4.jpg" alt="確認する" class="img-fluid card-img bg_color mb-2">
+          <img name="3" src="/sample5.jpg" alt="確認する" class="img-fluid card-img bg_color">    
+        
+      </div>
 
+      <div class="col-sm-6 col-md-2 py-3 mt-3 bg-light title">
+        <p class="h6 mx-auto text-center config_name">Imagelayout <span class="fa fa-save"></span></p>
+        <div class="img_layout">
+         <img src="" class="layout_bg w-100 mt-3 img-fluid card-img">
+         <p class = "h4 page_date w-100 text-center"></p>
+        </div>
       </div>
-      <div class="col-sm-2 col-md-2 py-3 mt-3 row-eq-height bg-light">
-       <p>２.背景 <span class="fa fa-reply reset_bg bg-warning p-1"></span></p>
-       <p class="config_bg w-100 mb-2"><img src="<%="/sample3.jpg"%>" class="img-fluid card-img"></p>
-       <p class="config_bg w-100 mb-2"><img src="<%="/sample4.jpg"%>" class="img-fluid card-img"></p>
-       <p class="config_bg w-100"><img src="<%="/sample5.jpg"%>" class="img-fluid card-img"></p>    
-      </div>
-      <div class="col-sm-8 col-md-8 py-3 mt-3 row-eq-height sample_image">
+
+      <div class="col-sm-12 col-md-8 py-3 mt-3 row-eq-height sample_image">
        <p class="title h4 w-100 text-danger text-center">Sample</p>
         <div id="carouselExampleSlidesOnly" class="carousel slide mx-auto" data-ride="carousel">
          <!-- スライドさせる画像の設定 -->
@@ -82,8 +93,14 @@
 
 
     <div class="mt-4 mx-auto text-center">
-     <a class="cd_page_next py-2 px-3 mr-2 text-white" href="#"><span class="fa fa-angle-double-left"></span> 前へ</a>
-     <a class="cd_page_next py-2 px-3 mr-2 text-white" href="#">次へ<span class="fa fa-angle-double-right"></span></a>
+     
+     <div class="text-center mx-auto"><input type="submit" value="次へ >>" class="cd_page py-2 px-3 mr-2 mb-2 text-white"></div>
+     <% end %><!-- /.form_tag -->
+
+     <%= form_tag("/album/#{@album.id}/destroy") do %>
+      <input type="submit" value="<< 前へ" name="back" class="cd_page py-2 px-3 mr-2 text-white">
+     <% end %>
+    
     </div>    
 
 </div>
