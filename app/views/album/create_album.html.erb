@@ -34,16 +34,21 @@
 
     <div class="h5 text-danger mt-4 mx-auto text-center title">レイアウトを作成してください</div>
 
-    <%= form_tag("/album/#{@album.id}/preview",{method: "get"}) do %>
+    <%= form_tag("/album/#{@album.id}/preview",{method: "get"}) do %><!--form_tag/ -->
 
     <div class="container">
      <div class="row">
       <div class="config col-sm-12 col-md-4 py-3 mt-3  bg-light">
         <div class="container">
           <div class="row album">
-          <% @images.each do |image| %>
+          <% @images.each_with_index do |image,i| %>
             <div class="col-sm-4 col-md-6 py-1 mr-1 mt-3  pictureimage mx-auto">          
-              <img src="<%="#{image.image}"%>" class="img-fluid img_list" name="image">
+              <img src="<%="#{image.image}"%>" class="img-fluid img_list img_select<%= i %>" name="<%= i %>">
+              <input type="hidden" name="image_date[<%= i %>][id]" value="<%="#{image.id}"%>">
+              <input type="hidden" name="image_date[<%= i %>][left]" value="">
+              <input type="hidden" name="image_date[<%= i %>][top]" value="">
+              <input type="hidden" name="image_date[<%= i %>][height]" value="">
+              <input type="hidden" name="image_date[<%= i %>][width]" value="">
             </div>      
           <% end %>
           </div><!-- /.row -->
@@ -68,7 +73,7 @@
 
     <div class="mt-4 mx-auto text-center">
 
-      <div class="text-center mx-auto"><input type="submit" value="プレビュー画面へ >>" class="cd_page py-2 px-3 mr-2 mb-2 text-white"></div>
+      <div class="text-center mx-auto preview"><input type="submit" value="プレビュー画面へ >>" class="cd_page py-2 px-3 mr-2 mb-2 text-white"></div>
      <% end %><!-- /.form_tag -->
 
      <%= form_tag("/album/#{@album.id}/edit_album", {method:"get"}) do %>
@@ -76,5 +81,6 @@
      <% end %>
 
     </div>    
+
 
 </div>

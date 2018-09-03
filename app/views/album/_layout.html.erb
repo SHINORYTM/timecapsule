@@ -1,14 +1,31 @@
 <div class="layout_top w-100 mx-auto">
  <div class="input_title mt-3 mb-1 text-center title h4"><%= @album.title %></div>
 </div>
-<div class="droparea layout_middle mx-auto bg-white h3 text-center pt-3 mb-0">
+<div class="droparea layout_middle mx-auto bg-white h3 text-center pt-3 mb-0 <%= "preview_layout" if current_page?(controller: 'album', action: 'preview') %>">
  <% if current_page?(controller: 'album', action: 'create_album') %>
   <div class="text"><i class="fa fa-image"></i> ここに画像をドラッグ＆ドロップ</div>
+  <input type="hidden" name="layout_offset_top" value="">
+  <input type="hidden" name="layout_offset_left" value=""> 
+  <input type="hidden" name="layout_height" value="">
+  <input type="hidden" name="layout_width" value=""> 
  <% end %>
  <% if current_page?(controller: 'album', action: 'preview') %>
-  <% @images.each do |image| %>        
-      <img src="<%="#{image.image}"%>" class="placed_img" name="image">   
+  <input type="hidden" name="offset_top" value="<%= @layout_offset_top %>">
+  <input type="hidden" name="offset_left" value="<%= @layout_offset_left %>">
+  <input type="hidden" name="prev_height" value="<%= @layout_height %>">
+  <input type="hidden" name="prev_width" value="<%= @layout_width %>">  
+  <% i = 0 %> 
+  <% @image_date.each do |date| %>
+   <% unless date[1][:id].blank? %>
+    <% image = Image.find_by(id: date[1][:id]) %> 
+    <img src="<%="#{image.image}"%>" class="img_placed image<%= i %> img<%= date[0] %>" name="<%= date[0] %>"> 
+    <input type="hidden" name="top<%= date[0] %>" value="<%= date[1][:top] %>">
+    <input type="hidden" name="left<%= date[0] %>" value="<%= date[1][:left] %>"> 
+    <input type="hidden" name="height<%= date[0] %>" value="<%= date[1][:height] %>"> 
+    <input type="hidden" name="width<%= date[0] %>" value="<%= date[1][:width] %>"> 
+    <% i = i + 1 %>  
   <% end %>
+ <% end %>
  <% end %>
 </div>
 <div class="layout_bottom w-100 mx-auto">

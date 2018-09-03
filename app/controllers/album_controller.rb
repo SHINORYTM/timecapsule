@@ -62,8 +62,13 @@ class AlbumController < ApplicationController
   def preview
     @album = Album.find_by(id: params[:id])
     @user = @current_user
-    @images = Image.where(user_id: @user.id)
     @layout = params[:layout_set]
+    @image_date = params[:image_date]
+    @layout_offset_top = params[:layout_offset_top]
+    @layout_offset_left = params[:layout_offset_left]
+    @layout_height = params[:layout_height]
+    @layout_width = params[:layout_width]
+    
   end
 
   def ensure_correct_user

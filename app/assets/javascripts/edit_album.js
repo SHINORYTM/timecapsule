@@ -38,10 +38,20 @@ $('.pictureimage').draggable({
     revert:'invalid',/* 範囲外へのドロップ時 */
     refreshPositions: "true",
     stack: ".pictureimage",//ドラッグした画像を一番上へ配置*/
-    start: function(event,uni){
+    start: function(event,ui){
       $(".img_list",this).addClass("able")
+    },
+    stop:function(event, ui) {
+      //ドラッグ終了時、画像の座標を取得
+      var coordinate_t = (ui.position.top);
+      var coordinate_l = (ui.position.left);
+      var top = $(".img_list",this).offset().top;
+      var left = $(".img_list",this).offset().left;
+      var that = $(".img_list",this)
+      var index = that.attr("name");
+      $('input:hidden[name="image_date[' + index + '][left]"]').attr("value",left);
+      $('input:hidden[name="image_date[' + index + '][top]"]').attr("value",top); 
     }
-  // stop:function(event, ui) {
   //ドラッグ終了時の処理　:一度ドラッグしたらリサイズ発動
   // $(".pictureimage").not(this).draggable("disable")/* 画像１枚のみドロップ、それ以外を無効 */      
   // }
@@ -50,13 +60,38 @@ $('.pictureimage').draggable({
 /* リサイズ比率、サイズ最大値設定 */
 $(".img_list").resizable({
   aspectRatio:true,
-  containment:".layout_middle"}).resizable("disable");
+  containment:".layout_middle",
+  stop: function(event, ui) {
+    //リサイズ終了時、画像のサイズを取得
+    var index = $(".img_list",this).attr("name");
+    $('input:hidden[name="image_date[' + index + '][height]"]').attr("value",ui.size.height);
+    $('input:hidden[name="image_date[' + index + '][width]"]').attr("value",ui.size.width);
+  }
+  }).resizable("disable");
 
-//プレビュー画面クリックで画像の座標とサイズをセッションへ保存
+//プレビュー画面クリックでドラッグしていない画像の[id]を空にする
 $(".preview").click(function(){
- var size = $(".able").width().height();
- var coordinate = $(".able").position(".layout_middle");
-
+  for (var i=0; i<$(".img_list").length; i++){
+  if ($('input:hidden[name="image_date[' + i + '][left]"]').val() == ""){
+    $('input:hidden[name="image_date[' + i + '][id]"]').attr("value","");
+  }
+  var w = $(".img_select" + i).width();
+  var h = $(".img_select" + i).height();
+  //ドラッグ移動している且つリサイズはしていない場合、元のサイズを入れる
+  if ($('input:hidden[name="image_date[' + i + '][left]"]').val().length && $('input:hidden[name="image_date[' + i + '][height]"]').val() == ""){
+    $('input:hidden[name="image_date[' + i + '][height]"]').attr("value",h)
+    $('input:hidden[name="image_date[' + i + '][width]"]').attr("value",w)
+  }
+  }
+  //layout_middleの座標とサイズをoffsetで取得
+  var layout_offset_top = $(".layout_middle").offset().top;
+  var layout_offset_left = $(".layout_middle").offset().left;
+  $('input:hidden[name="layout_offset_top"]').attr("value",layout_offset_top);
+  $('input:hidden[name="layout_offset_left"]').attr("value",layout_offset_left);
+  var layout_height = $(".layout_middle").height();
+  var layout_width = $(".layout_middle").width();
+  $('input:hidden[name="layout_height"]').attr("value",layout_height);
+  $('input:hidden[name="layout_width"]').attr("value",layout_width);
 });
 
 
@@ -102,7 +137,53 @@ $('#listclear').click(function(){
   $('.pictureimage').css("position","relative").css({top:"0",left:"0"}).width(gpw).height(gph)
   $('.ui-wrapper').width(w).height(h)
   $(".img_list").removeClass(".able").width(w).height(h).resizable("disable"); 
+　
+  for (var i=0; i<$(".img_list").length; i++){
+  $('input:hidden[name="image_date[' + i + '][height]"]').attr("value","");
+  $('input:hidden[name="image_date[' + i + '][width]"]').attr("value","");
+  $('input:hidden[name="image_date[' + i + '][left]"]').attr("value","");
+  $('input:hidden[name="image_date[' + i + '][top]"]').attr("value",""); 
+  };
+
   });
 
 
+
+});
+
+$(window).on('load', function(){
+
+  //_layout/preview
+
+//create_albumページのレイアウト挿入枠のサイズと座標を取得
+var offset_top = $('input:hidden[name="offset_top"]').attr("value");
+var offset_left = $('input:hidden[name="offset_left"]').attr("value");
+var layout_height = $('input:hidden[name="prev_height"]').attr("value");
+var layout_width = $('input:hidden[name="prev_width"]').attr("value");
+//プレビュー画面のレイアウト挿入枠のサイズと座標を取得
+var preview_offset_top = $(".layout_middle").offset().top;
+var preview_offset_left = $(".layout_middle").offset().left;
+var preview_height = $(".layout_middle").height();
+var preview_width = $(".layout_middle").width();
+
+
+
+
+//レイアウトのプレビュー画面に取得したサイズ、座標で表示　プレビュー画面のサイズに比率を合わせる
+for (var i=0; i<$(".img_placed").length; i++){
+  var index = $(".image" + i).attr("name");
+  var height = $('input:hidden[name="height' + index + '"]').attr("value");
+  var width = $('input:hidden[name="width' + index + '"]').attr("value");
+  var top = $('input:hidden[name="top' + index + '"]').attr("value");
+  var left = $('input:hidden[name="left' + index + '"]').attr("value");
+  sum_top = top - (offset_top - preview_offset_top)
+  sum_left = left - (offset_left - preview_offset_left)
+  ratio_height = preview_height/layout_height
+  ratio_width =  preview_width/layout_width
+  $(".img" + index).width(width);
+  $(".img" + index).height(height);
+  $(".img" + index).offset({top: top,left: left});
+}
+
+  
 });
