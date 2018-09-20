@@ -1,0 +1,33 @@
+<div class="show_wrapper">
+
+<h4 class="h3 image_show_top title text-center text-warning pt-3">Timecapsule</h4>
+
+<% if @user %><h4 class="h5 image_show_top text-center pt-3">送付先：<%= @album.target_for %></h4><% end %>
+
+<div class="container">
+  <div class="row">
+
+   <div class="col-sm-0 col-md-1"></div>
+
+    <div class="col-sm-12 col-md-10 py-3 mt-2">
+        <% if @details.layout.to_i == 1 %>
+            <%= render :partial => "screen1" %>
+            <% elsif @details.layout.to_i == 2 %>
+            <%= render :partial => "screen2" %>
+            <% elsif @details.layout.to_i == 3 %>
+            <%= render :partial => "screen3" %>
+            <% else %>
+            <div class="mx-auto text-center text-danger h4">レイアウトを設定してください</div>
+        <% end %>
+    </div>
+
+   <div class="col-sm-0 col-md-1"></div>
+
+  </div>
+ </div>
+ 
+ <div class="mx-auto text-center mt-3">
+ <input type="button" class="btn btn-default bg-primary text-white mt-3 mb-2" value="閉じる" onClick="window.close()">
+ </div>
+
+ </div>

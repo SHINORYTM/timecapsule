@@ -1,12 +1,12 @@
 <div class="login_wrapper">
     <header class="head pb-2 pt-2 bg-warning bg-light title">
-      <h3><%=link_to "T C","/users/#{@user.id}",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
+      <h3><%=link_to "T C","/users/#{@user.id}/user_top",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
       <ul　class="login_menu">
         <li class="title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
         </li>
         <li class="title text-warning menu">
-        <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
+        <%=link_to "To Create","/album/#{@user.id}/create",{ :class => "title text-warning"} %>
         </li>
       </ul>
       <div class="dropdown">
@@ -16,7 +16,7 @@
         </button>
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
+          <%=link_to "マイページ","/users/#{@user.id}/user_top",{ :class => "dropdown-item"} %>
           <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
           <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
           <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
@@ -58,16 +58,27 @@
  </div>
 
  <div class="mt-4 mx-auto text-center">
-
+ 
+  <%= form_tag("/detail/#{@album.id}/create") do %>
+   <input type="hidden" name="layout" value="<%= @layout %>"><!-- /layout_bg -->
+   <% @date = @image_date.keys.map {|date| @image_date[date]} %>
+   <% @date.each_with_index do |date,i| %>
+    <input type="hidden" name="image_date[<%= i %>][id]" value="<%= date[:id] %>">
+    <input type="hidden" name="image_date[<%= i %>][left]" value="<%= date[:left] %>">
+    <input type="hidden" name="image_date[<%= i %>][top]" value="<%= date[:top] %>">
+    <input type="hidden" name="image_date[<%= i %>][height]" value="<%= date[:height] %>">
+    <input type="hidden" name="image_date[<%= i %>][width]" value="<%= date[:width] %>">
+   <% end%>
+   <input type="submit" value="保存 >>" class="cd_page py-2 px-3 mr-2 mb-2 text-white">
+  <% end %>
   <!-- /<input type="submit" value="保存 >>" name="back" class="cd_page py-2 px-3 mr-2 text-white"> -->
 
  <%= form_tag("/album/#{@album.id}/create_album", {method:"get"}) do %>
-   <input type="submit" value="<< 戻る" name="back" class="cd_page py-2 px-3 mr-2 text-white">
+   <input type="submit" value="<< 戻る" name="back" class="cd_page py-2 px-3 mr-2  text-white">
    <input type="hidden" name="layout" value="<%= @layout %>"><!-- /layout_bg -->
  <% end %>
 
  </div>
-
 
 
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_094437) do
+ActiveRecord::Schema.define(version: 2018_09_04_064720) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "user_id"
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2018_08_18_094437) do
   create_table "details", force: :cascade do |t|
     t.integer "page"
     t.integer "layout"
-    t.string "image_id"
     t.integer "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "img_date"
   end
 
   create_table "images", force: :cascade do |t|

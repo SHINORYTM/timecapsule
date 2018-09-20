@@ -1,12 +1,12 @@
 <div class="use_wrapper">
     <header class="head pb-2 pt-2 bg-warning bg-light title">
-      <h3><%=link_to "T C","/users/#{@user.id}",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
+      <h3><%=link_to "T C","/users/#{@user.id}/user_top",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
       <ul　class="login_menu">
         <li class="title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
         </li>
         <li class="title text-warning menu">
-        <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
+        <%=link_to "To Create","/album/#{@user.id}/create",{ :class => "title text-warning"} %>
         </li>
       </ul>
       <div class="dropdown">
@@ -16,7 +16,7 @@
         </button>
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
+          <%=link_to "マイページ","/users/#{@user.id}/user_top",{ :class => "dropdown-item"} %>
           <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
           <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
           <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
@@ -32,16 +32,45 @@
       <div class="clear"></div>
     </header>
 
- <div class="use mt-4 pb-3">
-  <h3 class="title text-warning">SAMPLE(TIME CAPSULEの使い方)</h3>
-  <h4 class="title explain">使い方はとてもシンプル</h4>
-  <div class="to_use text-center">
-   <P class="d-inline-block text-left">①使用する写真を選択し、アップロード<br>
-   ②好きなページに写真をレイアウト<br>
-   ③メッセージを添付<br>
-   ④送信する相手、送信する年月日を指定</p>
+  <h3 class="title text-warning mt-4 ml-5 creation_method">TIME CAPSULEの作成方法</h3>
+  <div class="container mt-4 bg-white mx-auto">
+   <div class="row mx-auto text-center py-3">
+  
+    <div class"col-sm-12 col-md-4 process1 row-eq-height mx-auto text-center mb-2">
+     <div class="h4 pt-2">① お気に入りの写真をアップロード</div>
+     <img src="<%="/screen1.jpeg"%>" class="img-fluid create_method">
+    </div>
+
+    <div class="col-sm-0 col-md2 row-eq-height mx-auto">
+     <span class="fa fa-caret-right fa-4x pt-5 mx-auto"></span>
+    </div>
+
+    <div class"col-sm-12 col-md-4 process2 row-eq-height mx-auto text-center mb-2">
+     <div class="h4 pt-2">② 送付先、Timecapsuleのタイトル、メッセージを記入</div>
+     <img src="<%="/screen3.jpeg"%>" class="img-fluid create_method">
+    </div>
+
+    <div class"col-sm-12 col-md-4 process3 mt-2 mr-2 row-eq-height mx-auto text-center">
+     <div class="h4 pt-2">③ レイアウト背景とページ数を設定</div>
+     <img src="<%="/screen2.png"%>" class="img-fluid create_method">
+    </div>
+
+    <div class="col-sm-0 col-md2 row-eq-height mx-auto">
+     <span class="fa fa-caret-right fa-4x pt-5 mx-auto"></span>
+    </div>
+
+    <div class"col-sm-12 col-md-4 process4 mt-2 row-eq-height mx-auto text-center">
+     <div class="h4 px-4 pt-2">④ 好きな写真を好きなサイズ、好きな位置に配置</div>
+     <img src="<%="/screen4.png"%>" class="img-fluid create_method">
+    </div> 
+
+   </div>
   </div>
-  <h4 class="title explain">大切な人と思い出を共有しよう</h4>
- </div>
+ 
+    <div class="mx-auto text-center mt-5">
+    <%= link_to("/album/#{@user.id}/create", :class => "cd_page_next py-2 px-3 text-white title h5") do %>
+    Timecapsuleを作成する <span class="fa fa-image"></span>
+    <% end %>
+    </div>
 
 </div>

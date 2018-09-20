@@ -1,2 +1,3 @@
 class Detail < ApplicationRecord
+    
 end

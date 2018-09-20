@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post "users/create" =>"users#create"
   get "login" => "users#login_form"
   get "users/:id" => "users#show"
+  #test-up
+  get "users/:id/user_top" => "users#user_top"
   post "login" => "users#login"
   post "logout" => "users#logout"
   get "users/:id/edit" => "users#edit"
@@ -39,9 +41,13 @@ Rails.application.routes.draw do
   get "album/:id/edit_album" => "album#edit_album"
   get "album/:id/create_album" => "album#create_album"
   get "album/:id/preview" => "album#preview"
+  get "album/:id/creation_screen" => "album#creation_screen"
+  get "album/:id/confirm_email" => "album#confirm_email"
   post "album/:id/album" => "album#album"
   post "album/:id/destroy" => "album#destroy"
-  post "album/:id/confirm" => "album#confirm"
+  post "album/:id/delete" => "album#delete"
+  post "album/:id/favarite" => "album#favarite"
+  post "album/:id/favarite_destroy" => "album#favarite_destroy"
 
   #image
   post "image/:id/registration" => "image#registration"

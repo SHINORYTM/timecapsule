@@ -16,7 +16,7 @@ set :environment, rails_env
 set :output, "#{Rails.root}/log/cron.log"
 #
 every 1.minutes do
- runner "PictureController.batch"
+ runner "AlbumController.batch"
 end
 #
 # every 4.days do

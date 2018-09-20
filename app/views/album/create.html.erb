@@ -1,12 +1,12 @@
 <div class="login_wrapper">
     <header class="head pb-2 pt-2 bg-warning bg-light title">
-      <h3><%=link_to "T C","/users/#{@user.id}",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
+      <h3><%=link_to "T C","/users/#{@user.id}/user_top",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
       <ul　class="login_menu">
         <li class="title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
         </li>
         <li class="title text-warning menu">
-        <%=link_to "To Create","/picture/#{@user.id}/make",{ :class => "title text-warning"} %>
+        <%=link_to "To Create","/album/#{@user.id}/create",{ :class => "title text-warning"} %>
         </li>
       </ul>
       <div class="dropdown">
@@ -16,7 +16,7 @@
         </button>
         <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <%=link_to "マイページ","/users/#{@user.id}",{ :class => "dropdown-item"} %>
+          <%=link_to "マイページ","/users/#{@user.id}/user_top",{ :class => "dropdown-item"} %>
           <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
           <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
           <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
@@ -93,6 +93,8 @@
  <% end %>
  </div>
 
- 
+
+
+
 </div>
 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4> <%= @album.target_for %>さんへ<br/>Timcapsuleを送信しました。</h4>
+    <p>
+      Timecapsuleタイトル:<%= @album.title %><br/>
+      送信予定日：<%= @album.send_time %><br/>
+      Timecapsule詳細:下記リンクからご確認できます<br/>
+      <%= link_to("Timecapsule for you", controller: :album, id: @album.id, action: :creation_screen, pass: @album.id, pass2: @alubum.title) %><br/>
+      Timecapsuleへのログインはこちらから<br/>
+      <%= link_to("Start a Timecapsule", controller: :home, action: :top) %>    
+    </p>
+  </body>
+</html>

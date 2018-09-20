@@ -1,0 +1,409 @@
+<div class="login_wrapper">
+    <header class="head pb-2 pt-2 bg-warning bg-light title">
+      <h3><%=link_to "T C","/users/#{@user.id}/user_top",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3>     
+      <ul　class="login_menu">
+        <li class="title text-warning menu">
+         <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
+        </li>
+        <li class="title text-warning menu">
+        <%=link_to "To Create","/album/#{@user.id}/create",{ :class => "title text-warning"} %>
+        </li>
+      </ul>
+
+      <div class="dropdown">
+        <!-- 切替ボタンの設定 -->
+        <button type="button" class="btn btn-warning text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="fa fa-user"></span> <%= @current_user.name %>
+        </button>
+        <!-- ドロップメニューの設定 -->
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%=link_to "マイページ","/users/#{@user.id}/user_top",{ :class => "dropdown-item"} %>
+          <%=link_to "使い方","/users/#{@user.id}/how_to_use",{ :class => "dropdown-item"} %>
+          <%=link_to "アカウント設定","/users/#{@user.id}/edit",{ :class => "dropdown-item"} %>
+          <%=link_to "ログアウト","/logout",{method: :post, :class => "dropdown-item"} %>
+        </div><!-- /.dropdown-menu -->
+      </div>
+
+      <% if flash[:notice] %>
+       <div class="flash">
+        <%= flash[:notice] %>
+       </div>
+      <% end %>
+
+      <div class="clear"></div>
+    </header>
+
+    
+    
+    <ul class="nav nav-tabs p-3">
+     <li class="nav-item bg-white mr-2">
+      <a href="#tab1" class="nav-link active title text-warning" data-toggle="tab"><span class="fa fa-globe"></span> <span class="d-sm-none d-md-inline">一 覧 </span> (<%= @albums.length %>)</a>
+     </li>
+     <li class="nav-item bg-white mr-2">
+      <a href="#tab2" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-envelope-square"></span><span class="d-sm-none d-md-inline"> 未送信 </span> (<%= @albums_none.length %>)</a>
+     </li>
+     <li class="nav-item bg-white mr-2">
+      <a href="#tab3" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-envelope"></span><span class="d-sm-none d-md-inline"> 待機中 </span> (<%= @albums_stand_by.length %>)</a>
+     </li>
+     <li class="nav-item bg-white mr-2">
+      <a href="#tab4" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-share-square"></span><span class="d-sm-none d-md-inline"> 完 了 </span> (<%= @albums_completion.length %>)</a>
+     </li>
+     <li class="nav-item bg-white">
+      <a href="#tab5" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-heart tab_favarite"></span><span class="d-sm-none d-md-inline"> お気に入り </span> (<%= @albums_favarite.length %>)</a>
+     </li>
+    </ul>
+    
+  
+  <div class="container">
+    <div class="tab-content">
+     <div id="tab1" class="tab-pane active">
+    <!-- 作品がある場合 -->
+    <% if @albums.present? %>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-globe"></span> Timecapsule一覧</h4>
+      <div class="row album">
+      <% @albums.each do |album| %>
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
+         <div class="sub_info w-100 mb-1">
+          <% if album.status == "stand_by" %><span class="fa fa-envelope"></span> 送信待機中<% end %>
+          <% if album.status == "completion" %><span class="fa fa-share-square"></span> 送信完了<% end %>
+          <% if album.status == "none" %><span class="fa fa-envelope-square"></span> 未送信<% end %>
+
+          <% if album.favorite.present? %>
+           <%= link_to("/album/#{album.id}/favarite_destroy", {method: "post"}) do %>
+           <span class="fa fa-heart pt-1 favarite float-right"></span>
+           <% end %>
+          <% else %>
+           <%= link_to("/album/#{album.id}/favarite", {method: "post"}) do %>
+            <span class="fa fa-heart pt-1 no_favarite float-right"></span>
+           <% end %>
+          <% end %>
+
+         </div>
+
+       <div class="card img-thumbnail">
+        <% require "json" %>
+        <% details = Detail.where(id: album.id) %>
+        <% detail_first = details[0] %>
+        <% img_detail = JSON.parse(detail_first.img_date) %>
+        <% img_id = img_detail["0"]["id"] %>
+        <% img = Image.find_by(id: img_id) %>
+        <%= link_to image_tag("#{img.image}", {:class => "card-img-top"}), {:controller => :album, :id => album.id, :action => :creation_screen, :pass => album.message, :pass2 => album.title}, {:target => "_blank"} %>
+            
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= album.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/album/#{album.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+              <%= form_tag("/album/#{album.id}/confirm_email", {method: "get"}) do %>
+               <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
+               <%# <%= link_to("Timecapsuleを送信", "/album/#{album.id}/confirm_email", {:class => "sent_email title dropdown-item", data: { :confirm => '下記予定日に、Timecapsuleを届けますか?' } }) %>
+               <div class="h6 input_send_time px-4 mt-2 mb-3"><% if album.status == "none" %>送信予定日:未定<% elsif album.status == "stand_by" %>送信予定日:<%= album.send_time %><% else %>送信済:<%= album.send_time %><% end %> <input type="datetime-local" name="send_time" step="60" value="2018-09-20T08:00"></div>
+              <% end %>
+            </div><!-- /.dropdown-menu -->
+           </div>
+         </div>
+
+       </div> 
+
+       </div>
+      <% end %> 
+      </div> 
+
+    <% else %>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/album/#{@user.id}/create", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
+    <% end %>
+    
+  <!-- ここからタブ２〜４作成 --> 
+   </div>
+   <div id="tab2" class="tab-pane"> 
+   <!-- 作品（未送信）がある場合 -->
+    <% if @albums_none.present? %>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-envelope-square"></span> Timecapsule　none</h4>
+      <div class="row album">
+      <% @albums_none.each do |album_none| %>
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
+        <div class="sub_info w-100 mb-1">
+          <% if album_none.status == "stand_by" %><span class="fa fa-envelope"></span> 送信待機中<% end %>
+          <% if album_none.status == "completion" %><span class="fa fa-share-square"></span> 送信完了<% end %>
+          <% if album_none.status == "none" %><span class="fa fa-envelope-square"></span> 未送信<% end %>
+
+          <% if album_none.favorite.present? %>
+           <%= link_to("/album/#{album_none.id}/favarite_destroy", {method: "post"}) do %>
+           <span class="fa fa-heart pt-1 favarite float-right"></span>
+           <% end %>
+          <% else %>
+           <%= link_to("/picture/#{album_none.id}/favarite", {method: "post"}) do %>
+           <span class="fa fa-heart pt-1 no_favarite float-right"></span>
+           <% end %>
+          <% end %>
+
+         </div>
+
+       <div class="card img-thumbnail">
+
+        <% require "json" %>
+        <% details = Detail.where(id: album_none.id) %>
+        <% detail_first = details[0] %>
+        <% img_detail = JSON.parse(detail_first.img_date) %>
+        <% img_id = img_detail["0"]["id"] %>
+        <% img = Image.find_by(id: img_id) %>
+
+        <%= link_to image_tag("#{img.image}", {:class => "card-img-top"}), {:controller => :album, :id => album_none.id, :action => :creation_screen, :pass => album_none.id, :pass2 => album_none.title}, {:target => "_blank"} %>
+            
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= album_none.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/album/#{album_none.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+             <%= form_tag("/album/#{album_none.id}/confirm_email", {method: "get"}) do %>
+               <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
+               <%# <%= link_to("Timecapsuleを送信", "/album/#{album.id}/confirm_email", {:class => "sent_email title dropdown-item", data: { :confirm => '下記予定日に、Timecapsuleを届けますか?' } }) %>
+               <div class="h6 input_send_time px-4 mt-2 mb-3">送信予定日:未定 <input type="datetime-local" name="send_time" step="60" value="2018-09-20T08:00"></div>
+              <% end %>
+            </div><!-- /.dropdown-menu -->
+           </div>
+         </div>
+
+       </div> 
+
+       </div>
+      <% end %> 
+      </div> 
+
+    <% else %>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/album/#{@user.id}/create", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
+    <% end %>
+   </div>
+
+   <div id="tab3" class="tab-pane"> 
+   <!-- 作品（待機中）がある場合 -->
+    <% if @albums_stand_by.present? %>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-envelope"></span> Timecapsule　stand_by</h4>
+      <div class="row album">
+      <% @albums_stand_by.each do |album_stand_by| %>
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
+        <div class="sub_info w-100 mb-1">
+          <% if album_stand_by.status == "stand_by" %><span class="fa fa-envelope"></span> 送信待機中<% end %>
+          <% if album_stand_by.status == "completion" %><span class="fa fa-share-square"></span> 送信完了<% end %>
+          <% if album_stand_by.status == "none" %><span class="fa fa-envelope-square"></span> 未送信<% end %>
+
+          <% if album_stand_by.favorite.present? %>
+           <%= link_to("/album/#{album_stand_by.id}/favarite_destroy", {method: "post"}) do %>
+           <span class="fa fa-heart pt-1 favarite float-right"></span>
+           <% end %>
+          <% else %>
+           <%= link_to("/album/#{album_stand_by.id}/favarite", {method: "post"}) do %>
+           <span class="fa fa-heart pt-1 no_favarite float-right"></span>
+           <% end %>
+          <% end %>
+
+         </div>
+
+       <div class="card img-thumbnail">
+       
+        <% require "json" %>
+        <% details = Detail.where(id: album_stand_by.id) %>
+        <% detail_first = details[0] %>
+        <% img_detail = JSON.parse(detail_first.img_date) %>
+        <% img_id = img_detail["0"]["id"] %>
+        <% img = Image.find_by(id: img_id) %>
+        <%= link_to image_tag("#{img.image}", {:class => "card-img-top"}), {:controller => :album, :id => album_stand_by.id, :action => :creation_screen, :pass => album_stand_by.id, :pass2 => album_stand_by.title}, {:target => "_blank"} %>
+            
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= album_stand_by.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/album/#{album_stand_by.id}/delte", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+             <%= form_tag("/album/#{album_stand_by.id}/confirm_email", {method: "get"}) do %>
+               <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
+               <%# <%= link_to("Timecapsuleを送信", "/album/#{album.id}/confirm_email", {:class => "sent_email title dropdown-item", data: { :confirm => '下記予定日に、Timecapsuleを届けますか?' } }) %>
+               <div class="h6 input_send_time px-4 mt-2 mb-3">送信予定日:<%= album_stand_by.send_time %> <input type="datetime-local" name="send_time" step="60" value="2018-09-20T08:00"></div>
+              <% end %>
+            </div><!-- /.dropdown-menu -->
+           </div>
+         </div>
+
+       </div> 
+
+       </div>
+      <% end %> 
+      </div> 
+
+    <% else %>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/album/#{@user.id}/create", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
+    <% end %>
+   </div>
+
+   <div id="tab4" class="tab-pane">
+   <!-- 作品（完了）がある場合 -->
+    <% if @albums_completion.present? %>
+     <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-share-square"></span> Timecapsule　completion</h4>
+      <div class="row album">
+      <% @albums_completion.each do |album_completion| %>
+       <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+        <!-- 送信状態の表示 -->
+        <div class="sub_info w-100 mb-1">
+          <% if album_completion.status == "stand_by" %><span class="fa fa-envelope"></span> 送信待機中<% end %>
+          <% if album_completion.status == "completion" %><span class="fa fa-share-square"></span> 送信完了<% end %>
+          <% if album_completion.status == "none" %><span class="fa fa-envelope-square"></span> 未送信<% end %>
+
+          <% if album_completion.favorite.present? %>
+           <%= link_to("/album/#{album_completion.id}/favarite_destroy", {method: "post"}) do %>
+           <span class="fa fa-heart pt-1 favarite float-right"></span>
+           <% end %>
+          <% else %>
+           <%= link_to("/album/#{album_completion.id}/favarite", {method: "post"}) do %>
+           <span class="fa fa-heart pt-1 no_favarite float-right"></span>
+           <% end %>
+          <% end %>
+
+         </div>
+
+       <div class="card img-thumbnail">
+
+        <% require "json" %>
+        <% details = Detail.where(id: album_completion.id) %>
+        <% detail_first = details[0] %>
+        <% img_detail = JSON.parse(detail_first.img_date) %>
+        <% img_id = img_detail["0"]["id"] %>
+        <% img = Image.find_by(id: img_id) %>
+        <%= link_to image_tag("#{img.image}", {:class => "card-img-top"}), {:controller => :album, :id => album_completion.id, :action => :creation_screen, :pass => album_completion.id, :pass2 => album_completion.title}, {:target => "_blank"} %>
+            
+         <div class="card-body px-2 mx-auto">
+           <div class="dropdown pr-0">
+           <!-- 切替ボタンの設定 -->
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             title: <%= album_completion.title %>
+            </button>
+           <!-- ドロップメニューの設定 -->
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+             <%= link_to("Timecapsuleを削除", "/album/#{album_completion.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+              <%= form_tag("/album/#{album_completion.id}/confirm_email", {method: "get"}) do %>
+               <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
+               <%# <%= link_to("Timecapsuleを送信", "/album/#{album.id}/confirm_email", {:class => "sent_email title dropdown-item", data: { :confirm => '下記予定日に、Timecapsuleを届けますか?' } }) %>
+               <div class="h6 input_send_time px-4 mt-2 mb-3">送信済:<%= album_completion.send_time %> <input type="datetime-local" name="send_time" step="60" value="2018-09-20T08:00"></div>
+              <% end %>
+            </div><!-- /.dropdown-menu -->
+           </div>
+         </div>
+
+       </div> 
+
+       </div>
+      <% end %> 
+      </div> 
+
+    <% else %>
+     <!-- 作品がない場合 -->
+     <div class="container mx-auto text-center">
+       <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+       <%= link_to("Timecapsule作成", "/album/#{@user.id}/create", :class => "h5 image_nil mt-5 title text-white") %>
+     </div>
+    <% end %>
+   </div>
+  
+<div id="tab5" class="tab-pane">
+<!-- 作品(お気に入り）がある場合 -->
+<% if @albums_favarite.present? %>
+ <h4 class="h3 title text-warning text-center mt-4"><span class="fa fa-heart tab_favarite"></span> My Timecapsule</h4>
+  <div class="row album">
+  <% @albums_favarite.each do |album_favarite| %>
+   <div class="col-sm-6 col-md-3 py-3 mt-3 row-eq-height work mx-auto">
+    <!-- 送信状態の表示 -->
+     <div class="sub_info w-100 mb-1">
+      <% if album_favarite.status == "stand_by" %><span class="fa fa-envelope"></span> 送信待機中<% end %>
+      <% if album_favarite.status == "completion" %><span class="fa fa-share-square"></span> 送信完了<% end %>
+      <% if album_favarite.status == "none" %><span class="fa fa-envelope-square"></span> 未送信<% end %>
+
+      <% if album_favarite.favorite.present? %>
+       <%= link_to("/album/#{album_favarite.id}/favarite_destroy", {method: "post"}) do %>
+       <span class="fa fa-heart pt-1 favarite float-right"></span>
+       <% end %>
+      <% else %>
+       <%= link_to("/album/#{album_favarite.id}/favarite", {method: "post"}) do %>
+       <span class="fa fa-heart pt-1 no_favarite float-right"></span>
+       <% end %>
+      <% end %>
+
+     </div>
+
+   <div class="card img-thumbnail">
+
+    <% require "json" %>
+    <% details = Detail.where(id: album_favarite.id) %>
+    <% detail_first = details[0] %>
+    <% img_detail = JSON.parse(detail_first.img_date) %>
+    <% img_id = img_detail["0"]["id"] %>
+    <% img = Image.find_by(id: img_id) %>
+    <%= link_to image_tag("#{img.image}", {:class => "card-img-top"}), {:controller => :album, :id => album_favarite.id, :action => :creation_screen, :pass => album_favarite.id, :pass2 => album_favarite.title}, {:target => "_blank"} %>
+        
+     <div class="card-body px-2 mx-auto">
+       <div class="dropdown pr-0">
+       <!-- 切替ボタンの設定 -->
+        <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         title: <%= album_favarite.title %>
+        </button>
+       <!-- ドロップメニューの設定 -->
+        <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+         <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+         <%= link_to("Timecapsuleを削除", "/album/#{album_favarite.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
+         <%= form_tag("/album/#{album_favarite.id}/confirm_email", {method: "get"}) do %>
+               <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
+               <%# <%= link_to("Timecapsuleを送信", "/album/#{album.id}/confirm_email", {:class => "sent_email title dropdown-item", data: { :confirm => '下記予定日に、Timecapsuleを届けますか?' } }) %>
+               <div class="h6 input_send_time px-4 mt-2 mb-3"><% if album_favarite.status == "none" %>送信予定日:未定<% elsif album_favarite.status == "stand_by"%>送信予定日:<%= album_favarite.send_time %><% else %>送信済:<%= album_favarite.send_time %><% end %> <input type="datetime-local" name="send_time" step="60" value="2018-09-20T08:00"></div>
+              <% end %>
+        </div><!-- /.dropdown-menu -->
+       </div>
+     </div>
+
+   </div> 
+
+   </div>
+  <% end %> 
+  </div> 
+
+<% else %>
+ <!-- 作品がない場合 -->
+ <div class="container mx-auto text-center">
+   <h4 class="h3 title text-warning text-center mt-3">Nothing Timecapsule</h4>
+   <%= link_to("Timecapsule作成", "/album/#{@user.id}/create", :class => "h5 image_nil mt-5 title text-white") %>
+ </div>
+<% end %>
+</div>
+
+</div>
+<!-- ここまでタブ --> 
+  </div>
+
+</div>

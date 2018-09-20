@@ -70,4 +70,5 @@ gem 'jquery-ui-rails'
 gem 'whenever', :require => false
 
 gem 'carrierwave'
+gem 'fog-aws'
 gem 'dropzonejs-rails'

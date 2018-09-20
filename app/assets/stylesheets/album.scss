@@ -113,7 +113,6 @@
   border-left:1px solid lightgray;
   min-height:400px;
   border-bottom:1px solid lightgray;
-  position:relative;
 }
 
 .layout_bottom2{
@@ -276,6 +275,27 @@ font-weight:700;
 #button-blue:hover{
   background-color: rgba(0,0,0,0);
   color: #0493bd;
+}
+
+//creation_screen
+.show_wrapper{
+  background-image: url("/89f767edc23d8b7a1019be4dd8f78aee_s.jpg");
+  min-height:100vh;
+}
+
+.screen_area{
+  width:100%;
+  border-right:1px solid lightgray;
+  border-left:1px solid lightgray;
+  min-height:400px;
+  border-bottom:1px solid lightgray;
+}
+
+//how_to_use
+
+.create_method{
+  max-width: 300px;
+  max-height: 200px;
 }
 
 

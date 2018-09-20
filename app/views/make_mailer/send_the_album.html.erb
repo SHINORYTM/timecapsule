@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h4> <%= @user.name %>さんから<br/>Timcapsuleが届きました。</h4>
+    <p>
+      Timecapsuleタイトル:<%= @album.title %><br/>
+      Timecapsule詳細:下記リンクからご覧ください<br/>
+      <%= link_to("Timecapsule for you", controller: :album, id: @album.id, action: :creation_screen, pass: @album.id, pass2: @album.title) %><br/>
+      Timecapsuleへのログインはこちらから<br/>
+      <%= link_to("Start a Timecapsule", controller: :home, action: :top) %>    
+    </p>
+  </body>
+</html>

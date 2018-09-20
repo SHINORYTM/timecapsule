@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "アカウント登録が完了しました"
-      redirect_to("/users/#{@user.id}")
+      redirect_to("/users/#{@user.id}/user_top")
       MakeMailer.create_account(@user).deliver
     else
       render("users/new")
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:notice] = "ユーザー情報を編集しました"
-      redirect_to("/users/#{@user.id}")
+      redirect_to("/users/#{@user.id}/user_top")
       MakeMailer.update_account(@user).deliver
     else
       render("users/edit")
@@ -55,6 +55,18 @@ class UsersController < ApplicationController
     @pictures_favarite = Picture.where(user_id: @user.id) && Picture.where("favarite IS NOT NULL")
   end
 
+  def user_top
+    @user = User.find_by(id: params[:id])
+    @albums = Album.where(user_id: @user.id)
+    @albums_none = Album.where(user_id: @user.id, status: "none")
+    @albums_stand_by = Album.where(user_id: @user.id, status: "stand_by")
+    @albums_completion = Album.where(user_id: @user.id, status: "completion")
+    @albums_favarite = Album.where(user_id: @user.id) && Album.where("favorite IS NOT NULL")
+    #require "json"
+    #@detail = Detail.where(id: album_id)
+    #@json = JSON.parse(@detail.img_date)
+  end
+
   def login_form
   end
 
@@ -63,7 +75,7 @@ class UsersController < ApplicationController
     if @user
       session[:user_id] = @user.id
       flash[:notice] = "ログインしました"
-      redirect_to("/users/#{@user.id}")
+      redirect_to("/users/#{@user.id}/user_top")
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
       @email = params[:email]
@@ -81,7 +93,7 @@ class UsersController < ApplicationController
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
       flash[:notice] = "権限がありません"
-      redirect_to("/users/#{@current_user.id}")
+      redirect_to("/users/#{@current_user.id}/user_top")
     end
   end
 

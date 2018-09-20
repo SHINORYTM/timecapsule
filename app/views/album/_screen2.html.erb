@@ -1,0 +1,24 @@
+<div class="layout_top2 w-100 mx-auto">
+ <div class="input_title mt-3 mb-1 text-center title h4"><%= @album.title %></div>
+</div>
+<div class="screen_area layout_middle mx-auto bg-white h3 text-center pt-3 mb-0 <%= "preview_layout" if current_page?(controller: 'album', action: 'preview') %>">
+  
+   <input type="hidden" name="screen_top" value="">
+  <input type="hidden" name="screen_left" value="">
+  
+  <% i = 1 %>
+  <% x = 0 %>
+  <% @detail.each do |detail| %>
+    <% detail_id = detail[i]["id"]%>
+    <% img = Image.find_by(id: detail_id) %> 
+    <img src="<%="#{img.image}"%>" class="screen<%= x %> screen" name="<%= x %>"> 
+    <input type="hidden" name="screen_top<%= x %>" value="<%= "#{detail[i]["top"]}" %>">
+    <input type="hidden" name="screen_left<%= x %>" value="<%="#{detail[i]["left"]}" %>"> 
+    <input type="hidden" name="screen_height<%= x %>" value="<%= "#{detail[i]["height"]}" %>"> 
+    <input type="hidden" name="screen_width<%= x %>" value="<%= "#{detail[i]["width"]}" %>">
+    <% x = x + 1 %> 
+ <% end %>
+</div>
+<div class="layout_bottom2 w-100 mx-auto">
+ <div class="textarea mb-3 title h4 text-center message_form"><%= @album.message %></div>
+</div>
