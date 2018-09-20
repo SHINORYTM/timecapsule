@@ -13,6 +13,7 @@ module Timecapsule
     config.time_zone = 'Tokyo'
     config.log_level = :unknown
     config.logger = Logger.new('log/sample.log')
+    config.assets.initialize_on_precompile = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
