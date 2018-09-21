@@ -8,6 +8,6 @@ if Rails.env == 'production'
      region: 'ap-northeast-1'
      }
     config.fog_directory = 'timecapsule-image'
-     config.asset_host = 'https://s3.ap-northeast-1.amazonaws.com/timecapsule-image'
+    config.asset_host = 'https://s3.ap-northeast-1.amazonaws.com/timecapsule-image'
     end
     end
