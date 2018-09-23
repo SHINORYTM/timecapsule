@@ -72,3 +72,4 @@ gem 'whenever', :require => false
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'dropzonejs-rails'
+gem 'dotenv-rails'

@@ -34,3 +34,6 @@
 
 # Ignore picture-file.
 /public/images
+
+# envfile
+/.env

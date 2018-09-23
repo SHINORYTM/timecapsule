@@ -84,6 +84,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
+      railties (>= 3.2, < 6.0)
     dropzonejs-rails (0.8.2)
       rails (> 3.1)
     erubi (1.7.1)
@@ -247,6 +251,7 @@ DEPENDENCIES
   carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
+  dotenv-rails
   dropzonejs-rails
   fog-aws
   jbuilder (~> 2.5)
