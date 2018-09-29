@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:notice] = "アカウント登録が完了しました"
       redirect_to("/users/#{@user.id}/user_top")
-      MakeMailer.create_account(@user).deliver
+      # MakeMailer.create_account(@user).deliver
     else
       render("users/new")
     end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "ユーザー情報を編集しました"
       redirect_to("/users/#{@user.id}/user_top")
-      MakeMailer.update_account(@user).deliver
+      # MakeMailer.update_account(@user).deliver
     else
       render("users/edit")
     end
@@ -62,9 +62,6 @@ class UsersController < ApplicationController
     @albums_stand_by = Album.where(user_id: @user.id, status: "stand_by")
     @albums_completion = Album.where(user_id: @user.id, status: "completion")
     @albums_favarite = Album.where(user_id: @user.id) && Album.where("favorite IS NOT NULL")
-    #require "json"
-    #@detail = Detail.where(id: album_id)
-    #@json = JSON.parse(@detail.img_date)
   end
 
   def login_form

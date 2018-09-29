@@ -50,7 +50,8 @@ $('.pictureimage').draggable({
       $(".img_list",this).addClass("able")
     },
     stop:function(event, ui) {
-      //ドラッグ終了時、画像の座標を取得
+      // 画像がレイアウトの座標より右側へドラッグされた場合のみ画像の座標を取得
+      if ($(".layout_middle").offset().left < $(".img_list",this).offset().left){
       //var coordinate_t = (ui.position.top); 現在位置からの座標
       //var coordinate_l = (ui.position.left);
       var top = $(".img_list",this).offset().top;
@@ -59,6 +60,7 @@ $('.pictureimage').draggable({
       var index = that.attr("name");
       $('input:hidden[name="image_date[' + index + '][left]"]').attr("value",left);
       $('input:hidden[name="image_date[' + index + '][top]"]').attr("value",top); 
+      }
     }
   //ドラッグ終了時の処理　:一度ドラッグしたらリサイズ発動
   // $(".pictureimage").not(this).draggable("disable")/* 画像１枚のみドロップ、それ以外を無効 */      

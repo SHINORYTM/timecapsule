@@ -102,7 +102,7 @@ class AlbumController < ApplicationController
     @user=@current_user
 
     if @album.present?
-      MakeMailer.confirm_email(@user,@album).deliver
+      # MakeMailer.confirm_email(@user,@album).deliver
       @album.status = "stand_by"
       @album.send_time = params[:send_time]
       @album.save
