@@ -153,7 +153,7 @@
        <div class="card img-thumbnail">
 
         <% require "json" %>
-        <% details = Detail.where(id: album_none.id) %>
+        <% details = Detail.where(album_id: album_none.id) %>
         <% detail_first = details[0] %>
         <% img_detail = JSON.parse(detail_first.img_date) %>
         <% img_id = img_detail["0"]["id"] %>
@@ -223,7 +223,7 @@
        <div class="card img-thumbnail">
        
         <% require "json" %>
-        <% details = Detail.where(id: album_stand_by.id) %>
+        <% details = Detail.where(album_id: album_stand_by.id) %>
         <% detail_first = details[0] %>
         <% img_detail = JSON.parse(detail_first.img_date) %>
         <% img_id = img_detail["0"]["id"] %>
@@ -292,7 +292,7 @@
        <div class="card img-thumbnail">
 
         <% require "json" %>
-        <% details = Detail.where(id: album_completion.id) %>
+        <% details = Detail.where(album_id: album_completion.id) %>
         <% detail_first = details[0] %>
         <% img_detail = JSON.parse(detail_first.img_date) %>
         <% img_id = img_detail["0"]["id"] %>
@@ -361,7 +361,7 @@
    <div class="card img-thumbnail">
 
     <% require "json" %>
-    <% details = Detail.where(id: album_favarite.id) %>
+    <% details = Detail.where(album_id: album_favarite.id) %>
     <% detail_first = details[0] %>
     <% img_detail = JSON.parse(detail_first.img_date) %>
     <% img_id = img_detail["0"]["id"] %>
