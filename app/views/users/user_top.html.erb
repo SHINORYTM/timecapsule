@@ -83,7 +83,7 @@
 
        <div class="card img-thumbnail">
         <% require "json" %>
-        <% details = Detail.where(id: album.id) %>
+        <% details = Detail.where(album_id: album.id) %>
         <% detail_first = details[0] %>
         <% img_detail = JSON.parse(detail_first.img_date) %>
         <% img_id = img_detail["0"]["id"] %>
