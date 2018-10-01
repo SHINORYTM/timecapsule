@@ -172,6 +172,9 @@ $('#listclear').click(function(){
 
 $(window).on('load', function(){
 
+ //フラッシュを3秒で非表示 
+ $(".flash").slideUp(3000);
+  
   //_layout/preview
 
 //create_albumページのレイアウト挿入枠のサイズと座標を取得

@@ -98,7 +98,7 @@
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
-             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+             
              <%= link_to("Timecapsuleを削除", "/album/#{album.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
               <%= form_tag("/album/#{album.id}/confirm_email", {method: "get"}) do %>
                <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
@@ -169,7 +169,7 @@
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
-             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+            
              <%= link_to("Timecapsuleを削除", "/album/#{album_none.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
              <%= form_tag("/album/#{album_none.id}/confirm_email", {method: "get"}) do %>
                <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
@@ -238,7 +238,7 @@
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
-             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+             
              <%= link_to("Timecapsuleを削除", "/album/#{album_stand_by.id}/delte", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
              <%= form_tag("/album/#{album_stand_by.id}/confirm_email", {method: "get"}) do %>
                <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
@@ -307,7 +307,7 @@
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
-             <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+            
              <%= link_to("Timecapsuleを削除", "/album/#{album_completion.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
               <%= form_tag("/album/#{album_completion.id}/confirm_email", {method: "get"}) do %>
                <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
@@ -376,7 +376,7 @@
         </button>
        <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
-         <%= link_to("Timecapsuleを編集", "#", :class => "image_edit mb-2 title dropdown-item") %>
+        
          <%= link_to("Timecapsuleを削除", "/album/#{album_favarite.id}/delete", {method: "post", :class => "image_destroy title dropdown-item",data: { :confirm => '削除します。よろしいですか?'} }) %>
          <%= form_tag("/album/#{album_favarite.id}/confirm_email", {method: "get"}) do %>
                <input type="submit" value="Timecapsuleを送信" class="sent_email title dropdown-item">
