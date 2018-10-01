@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   post "album/:id/delete" => "album#delete"
   post "album/:id/favarite" => "album#favarite"
   post "album/:id/favarite_destroy" => "album#favarite_destroy"
+  post "album/:id/stop_create_album" => "album#stop_create_album"
 
   #image
   post "image/:id/registration" => "image#registration"

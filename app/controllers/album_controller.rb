@@ -5,18 +5,20 @@ class AlbumController < ApplicationController
   before_action :ensure_correct_creater, {only: [:edit_album,:create_album, :preview]}
   # before_action :currect_album_acssecer, {only: [:creation_screen]}
   
-
+  #写真をアップロード 　
   def create
     @user = User.find_by(id: params[:id])
     
     
   end
 
+  #アルバムの送付先、タイトル、メッセージを作成 
   def edit_message
     @user = User.find_by(id: params[:id])
     @album = Album.new
   end
 
+  #アルバムを作成し、レイアウト等の設定ページへ post 　
   def album
     @user = User.find_by(id: params[:id])
     @album = Album.new(user_id: @user.id, title: params[:title], target_for: params[:target_for], message: params[:message], status: "none")
@@ -29,14 +31,16 @@ class AlbumController < ApplicationController
     end
   
   end
-
+  
+  #送付先等の設定やりなおし、アルバムを削除 post
   def destroy
     @album = Album.find_by(id: params[:id])
     @user = @current_user
     @album.destroy
     redirect_to("/album/#{@user.id}/edit_message")
   end
-
+  
+  #ユーザートップページからアルバムを削除 post
   def delete
     @album = Album.find_by(id: params[:id])
     @detail = Detail.find_by(album_id: @album.id)
@@ -46,19 +50,21 @@ class AlbumController < ApplicationController
     redirect_to("/users/#{@user.id}/user_top")
   end
   
-
+  #写真をアップロード post
   def upload
     @user = User.find_by(id: params[:id])
     @images = Image.where(user_id: @user.id)
   end
-
+  
+  #レイアウト等の設定ページ 
   def edit_album
     # @user = User.find_by(id: params[:id])
      @album = Album.find_by(id: params[:id])
      @user = @current_user
      @layout = params[:layout]
   end
-
+  
+  #写真の配置、サイズ設定ページ 
   def create_album
     # @user = User.find_by(id: params[:id])
      @album = Album.find_by(id: params[:id])
@@ -71,7 +77,8 @@ class AlbumController < ApplicationController
       redirect_to("/album/#{@album.id}/edit_album")
      end
   end
-
+  
+  #アルバムのプレビュー画面 　
   def preview
     @album = Album.find_by(id: params[:id])
     @user = @current_user
@@ -88,7 +95,8 @@ class AlbumController < ApplicationController
     end
    
   end
-
+  
+  #アルバム確認画面及び送付先閲覧画面 
   def creation_screen
     @album = Album.find_by(id: params[:id])
     require "json"
@@ -96,7 +104,8 @@ class AlbumController < ApplicationController
     @detail = JSON.parse(@details.img_date)
     @user = @current_user
   end
-
+  
+  #アルバム送信 post 　
   def confirm_email
     @album = Album.find_by(id: params[:id])
     @user=@current_user
@@ -110,7 +119,8 @@ class AlbumController < ApplicationController
       flash[:notice] = "Timecapsule【title:#{@album.title}】を送信しました"
     end 
   end
-
+  
+  #バッチ処理 
   def self.batch
     if Album.send_date?.present?
       Album.send_date?.each do |album|
@@ -120,7 +130,8 @@ class AlbumController < ApplicationController
       end
     end 
   end
-
+  
+  #お気に入り登録 post
   def favarite
     @user=@current_user
     @album=Album.find_by(id: params[:id])
@@ -128,7 +139,8 @@ class AlbumController < ApplicationController
     @album.save
     redirect_to("/users/#{@user.id}/user_top")
   end
-
+  
+  #お気に入り登録削除 post
   def favarite_destroy
     @user=@current_user
     @album=Album.find_by(id: params[:id])
@@ -136,6 +148,14 @@ class AlbumController < ApplicationController
     @album.save
     redirect_to("/users/#{@user.id}/user_top")
   end
+  
+  #作成途中で中断した場合、アルバムを削除 post
+  def stop_create_album
+    @user=@current_user
+    @album=Album.find_by(id: params[:id])
+    @album.destroy
+    redirect_to("/users/#{@user.id}/user_top")
+  end 
 
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
@@ -143,7 +163,8 @@ class AlbumController < ApplicationController
       redirect_to("/users/#{@current_user.id}/user_top")
     end
   end
-
+  
+  #アップロード画像確認画面
   def upload_image
     @images = Image.where(user_id: @current_user.id)
     unless @images.present?
