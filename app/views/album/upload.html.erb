@@ -2,7 +2,7 @@
     <header class="head pb-2 pt-2 bg-warning bg-light title">
       <h3><%=link_to "T C","/users/#{@user.id}/user_top",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
       <ul　class="login_menu">
-        <li class="title text-warning menu">
+        <li class="d-none d-sm-inline title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
         </li>
         <li class="title text-warning menu">
@@ -33,7 +33,8 @@
     </header>
     
      <% if @images.present? %>
-      <div class="h5 text-danger mt-4 mx-auto text-center">アップロードされた写真で問題なければ【作成画面】へ進んでください</div>
+      <div class="h5 text-danger mt-4 mx-auto text-center d-none d-md-block">アップロードされた写真で問題なければ【作成画面】へ進んでください</div>
+      <div class="text-danger mt-4 mx-auto text-center d-md-none">アップロードされた写真で問題なければ<br>【作成画面】へ進んでください</div>
      <% else %>
       <div class="h5 text-danger mt-4 mx-auto text-center">アップロードしている写真がありません</div>
      <% end %>
@@ -42,7 +43,7 @@
      <div class="row album bg-light">
       <% if @images.present? %>
        <% @images.each do |image| %>
-        <div class="col-sm-4 col-md-2 py-3 mr-1 mt-3  picture mx-auto bg-light">
+        <div class="col-6 col-sm-4 col-md-2 py-3 mr-1 mt-3  picture mx-auto bg-light">
          <div class="card img-thumbnail bg-light upload_image">
           <img src="<%="#{image.image}"%>" class="img-fluid">
          </div>

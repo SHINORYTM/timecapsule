@@ -2,7 +2,7 @@
     <header class="head pb-2 pt-2 bg-warning bg-light title">
       <h3><%=link_to "T C","/users/#{@user.id}/user_top",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
       <ul　class="login_menu">
-        <li class="title text-warning menu">
+        <li class="d-none d-sm-inline title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
         </li>
         <li class="title text-warning menu">
@@ -38,16 +38,16 @@
        <div class="h3 mt-2 ml-2 w-100 title_upload">写真のアップロード</div>
         <div class="container mt-3">
          <div class="row">
-          <div class="col-sm-5 col-md5 row-eq-height mx-auto">
+          <div class="col-5 col-sm-5 col-md5 row-eq-height mx-auto">
            <div class="h3 number w-100">1</div>
             <img src="<%="/sample2.jpg"%>" class="img-fluid sample_picture2">
            <p class="mt-1">送りたい写真を準備してください。<br/>
            写真１枚からアップロードできます。</p>  
           </div>
-          <div class="col-sm-2 col-md2 row-eq-height mx-auto">
+          <div class="col-2 col-sm-2 col-md2 row-eq-height mx-auto">
            <span class="fa fa-caret-right fa-4x pt-5 mx-auto"></span>
           </div>
-          <div class="col-sm-5 col-md5 row-eq-height mx-auto">
+          <div class="col-5 col-sm-5 col-md5 row-eq-height mx-auto">
            <div class="h3 number w-100">2</div>
             <img src="<%="/screenshot.jpg"%>" class="img-fluid sample_picture2">
             <p class="mt-1">写真を選択する画面が表示されたらアップロードしたい写真を選択してください</p>

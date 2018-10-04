@@ -2,7 +2,7 @@
     <header class="head pb-2 pt-2 bg-warning bg-light title">
       <h3><%=link_to "T C","/users/#{@user.id}/user_top",{ :class => "d-block bg-warning px-2 ml-2 title text-white"} %></h3> 
       <ul　class="login_menu">
-        <li class="title text-warning menu">
+        <li class="d-none d-sm-inline title text-warning menu">
          <%=link_to "How to Use","/users/#{@user.id}/how_to_use",{ :class => "title text-warning"} %>
         </li>
         <li class="title text-warning menu">
@@ -32,7 +32,8 @@
       <div class="clear"></div>
     </header>
 
-    <div class="h5 text-danger mb-2 mt-4 mx-auto text-center title">宛先、タイトル、メッセージを記入してください</div>
+    <div class="h5 text-danger mb-2 mt-4 mx-auto text-center title d-none d-md-block">宛先、タイトル、メッセージを記入してください</div>
+    <div class="text-danger mb-2 mt-4 mx-auto text-center title d-md-none">宛先、タイトル、メッセージを記入してください</div>
 
         <% if @error_message %>
         <div class="form-error mt-3 mx-auto text-center">

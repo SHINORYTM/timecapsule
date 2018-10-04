@@ -28,11 +28,11 @@
 
     <div class="container">
      <div class="row">
-      <div class="config col-sm-12 col-md-4 py-3 mt-3  bg-light">
+      <div class="config col-4 col-sm-12 col-md-4 py-3 mt-3  bg-light">
         <div class="container">
           <div class="row album">
           <% @images.each_with_index do |image,i| %>
-            <div class="col-sm-4 col-md-6 py-1 mr-1 mt-3  pictureimage mx-auto">          
+            <div class="col-12 col-sm-4 col-md-6 py-1 mr-1 mt-3  pictureimage mx-auto">          
               <img src="<%="#{image.image}"%>" class="img-fluid img_list img_select<%= i %>" name="<%= i %>">
               <input type="hidden" name="image_date[<%= i %>][id]" value="<%="#{image.id}"%>">
               <input type="hidden" name="image_date[<%= i %>][left]" value="">
@@ -45,7 +45,7 @@
         </div><!-- /.container -->
       </div><!-- /.config -->
 
-      <div class="col-sm-12 col-md-8 py-5 mt-3 row-eq-height">
+      <div class="col-8 col-sm-12 col-md-8 py-5 mt-3 row-eq-height">
         <% if @layout.to_i == 1 %>
         <%= render :partial => "layout" %>
         <% elsif @layout.to_i == 2 %>

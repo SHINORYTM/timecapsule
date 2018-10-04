@@ -10,24 +10,33 @@
 
 
   <div class="pt-4">
-    <nav class="navbar navbar-expand-md navbar-white bg-warning mb-4 py-3">
-        <h7 ><a href="/about" class="about title text-white">WHAT IS TIME CAPSULE</a></h7>
-    </nav>
+    <div class="d-none d-sm-block navbar navbar-expand-md navbar-white bg-warning mb-4 py-3 text-center">
+        <h7><a href="/about" class="about title text-white">WHAT IS TIME CAPSULE</a></h7>
+    </div>
+        <div class="h5 text-center d-sm-none"><a href="/about" class="about title text-warning">WHAT IS TIME CAPSULE</a></div>
 
-    <div class="container text-center">
+    <div class="container text-center d-none d-sm-block">
         
-      <div class="content pt-3 pb-2 bg-light">
-        <h2 class="text-warning title pb-3">DRIVER THE MEMORIES</h2>
-        <ul class="d-inline-block pr-5 py-4">
+      <div class="row content pt-3 pb-2 bg-light">
+        <h2 class="col-12 text-warning title pb-3">DRIVER THE MEMORIES</h2>
+        <ul class="col-12 col-sm-12 col-md-12 col-lg-6 d-inline-block pr-5 py-4">
          <h6 class="d-inline action">これから始める方</h6><br>
          <a class="btn btn-top btn-sm btn-primary bg-warning border-warning title mt-2" href="/signup" role="button">TIME CAPSULEに登録</a>
         </ul>
-        <ul class="d-inline-block pr-5 py-4">
+        <ul class="col-12 col-sm-12 col-md-12 col-lg-6 d-inline-block pr-5 py-4">
          <P class="d-inline action">登録済みの方</P><br> 
          <a class="btn btn-top btn-sm btn-primary title mt-2" href="/login" role="button">TIME CAPSULEにログイン</a>
         </ul>
       </div>
     </div>
+
+    <div class="container text-center d-sm-none mx-auto">
+     <div class="row pt-3 pb-2 mx-auto text-center">
+      <a class="btn btn-top btn-sm btn-primary bg-warning border-warning title mt-2 mx-auto" href="/signup" role="button">TIME CAPSULEに登録</a>
+      <a class="btn btn-top btn-sm btn-primary title mt-3 mx-auto" href="/login" role="button">TIME CAPSULEにログイン</a>
+     </div>
+    </div>
+
   </div>
 
   </div>

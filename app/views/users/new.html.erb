@@ -1,11 +1,29 @@
 <div class="wrapper">
     <header class="head pb-2 pt-2 text-center bg-warning bg-light title"><h1><a href="/" class="text-warning">TIME CAPSULE</a></h1></header>
 
-<nav class="navbar navbar-expand-md navbar-white bg-warning my-4 py-3">
-    <h7 ><a href="/about" class="about title text-white">WHAT IS TIME CAPSULE</a></h7>
-</nav>
+<div class="d-none d-sm-block navbar navbar-expand-md navbar-white bg-warning mb-4 py-3 text-center mt-4">
+        <h7><a href="/about" class="about title text-white">WHAT IS TIME CAPSULE</a></h7>
+    </div>
+        <div class="h5 text-center d-sm-none mt-2"><a href="/about" class="about title text-warning">WHAT IS TIME CAPSULE</a></div>
 
-<div class="container middle-wrapper bg-light  border-bottom text-center py-3">
+<div class="d-none d-sm-block container middle-wrapper bg-light  border-bottom text-center py-3">
+  <div class="login_form">
+      <h4 class="title text-warning">create account</h4>
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="form-error title">
+          <%= message %>
+        </div>
+      <% end %>
+      <%= form_tag("/users/create") do %>
+       <div class="input mt-3 mb-3"><input name="name" value="<%= @user.name %>"  placeholder="名前"></div>
+       <div class="input mt-3 mb-3"><input name="email" value="<%= @user.email %>" placeholder="メールアドレス"></div>
+       <div class="input mb-3"><input name="password" value="<%= @user.password %>" type="password" placeholder="パスワード"></div>
+       <div class="input create_account mb-3"><input type="submit" value="アカウント登録"></div>
+      <% end %>
+  </div>
+</div>
+
+<div class="d-sm-none container text-center py-3">
   <div class="login_form">
       <h4 class="title text-warning">create account</h4>
       <% @user.errors.full_messages.each do |message| %>
