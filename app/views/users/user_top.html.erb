@@ -40,10 +40,10 @@
      <li class="nav-item bg-white mr-1">
       <a href="#tab1" class="nav-link active title text-warning" data-toggle="tab"><span class="fa fa-globe"></span> <span class="d-none d-sm-none d-md-inline">一 覧 </span> (<%= @albums.length %>)</a>
      </li>
-     <li class="nav-item bg-white mr-2">
+     <li class="nav-item bg-white mr-1">
       <a href="#tab2" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-envelope-square"></span><span class="d-none d-sm-none d-md-inline"> 未送信 </span> (<%= @albums_none.length %>)</a>
      </li>
-     <li class="nav-item bg-white mr-2">
+     <li class="nav-item bg-white mr-1">
       <a href="#tab3" class="nav-link title text-warning" data-toggle="tab"><span class="fa fa-envelope"></span><span class="d-none d-sm-none d-md-inline"> 待機中 </span> (<%= @albums_stand_by.length %>)</a>
      </li>
      <li class="nav-item bg-white mr-1">
@@ -94,8 +94,11 @@
          <div class="card-body px-2 mx-auto">
            <div class="dropdown pr-0">
            <!-- 切替ボタンの設定 -->
-            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle d-none d-md-inline" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              title: <%= album.title %>
+            </button>
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle d-md-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <%= album.title %>
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
@@ -165,8 +168,11 @@
          <div class="card-body px-2 mx-auto">
            <div class="dropdown pr-0">
            <!-- 切替ボタンの設定 -->
-            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle d-none d-md-inline" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              title: <%= album_none.title %>
+            </button>
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle d-md-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <%= album_none.title %>
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
@@ -234,8 +240,11 @@
          <div class="card-body px-2 mx-auto">
            <div class="dropdown pr-0">
            <!-- 切替ボタンの設定 -->
-            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle d-none d-md-inline" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              title: <%= album_stand_by.title %>
+            </button>
+             <button type="button" class="btn btn-warning title text-white dropdown-toggle d-md-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <%= album_stand_by.title %>
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
@@ -303,8 +312,11 @@
          <div class="card-body px-2 mx-auto">
            <div class="dropdown pr-0">
            <!-- 切替ボタンの設定 -->
-            <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle d-none d-md-inline" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              title: <%= album_completion.title %>
+            </button>
+            <button type="button" class="btn btn-warning title text-white dropdown-toggle d-md-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <%= album_completion.title %>
             </button>
            <!-- ドロップメニューの設定 -->
             <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
@@ -372,8 +384,11 @@
      <div class="card-body px-2 mx-auto">
        <div class="dropdown pr-0">
        <!-- 切替ボタンの設定 -->
-        <button type="button" class="btn btn-warning title text-white dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-warning title text-white dropdown-toggle d-none d-md-inline" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          title: <%= album_favarite.title %>
+        </button>
+        <button type="button" class="btn btn-warning title text-white dropdown-toggle d-md-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <%= album_favarite.title %>
         </button>
        <!-- ドロップメニューの設定 -->
         <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
